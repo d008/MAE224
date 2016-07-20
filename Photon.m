@@ -7,6 +7,7 @@ classdef Photon < handle
     properties
         coreID;
         url;
+        url2;
     end
     
     properties (SetAccess = protected, GetAccess = private)
@@ -19,6 +20,7 @@ classdef Photon < handle
             obj.coreID = name;
             obj.token = accestoken;
             obj.url = strcat('https://api.particle.io/v1/devices/',obj.coreID,'/');
+            obj.url2 = strcat('https://api.particle.io/v1/devices/');
         end
         %fetch takes a single parameter, the name of the variable you want
         %to fetch from the spark.io website.  Returns the value of that
@@ -27,6 +29,43 @@ classdef Photon < handle
             URL = strcat(obj.url,param,'/');
             data = webread(URL,'access_token=',obj.token);
             data = data.result;
+        end
+        
+        function names  = getDevices(obj)
+            URL = obj.url2;
+            data = webread(URL,'access_token=',obj.token);
+            names = {};
+            for i = 1:length(data)
+                names{i} = data{i}.name;
+            end
+        end
+        
+        function connected  = getConnection(obj)
+            URL = obj.url2;
+            data = webread(URL,'access_token=',obj.token);
+            names = {};
+            connection={};
+            connected = 0;
+            for i = 1:length(data)
+                names{i} = data{i}.name;
+                connection{i} = data{i}.connected;
+                if strcmp(names{i},obj.coreID) || strcmp(data{i}.id,obj.coreID)
+                    connected = connection{i}(1);
+                end
+            end
+        end
+        
+        function names  = getConnectedDevices(obj)
+            URL = obj.url2;
+            data = webread(URL,'access_token=',obj.token);
+            names = {};
+            connection={};
+            connected = 0;
+            for i = 1:length(data)
+                if data{i}.connected(1)
+                names{i} = data{i}.name;
+                end
+            end
         end
         
         %getVariables returns the potential variables that can be fetched
@@ -80,7 +119,7 @@ classdef Photon < handle
             feedback = obj.push('setInput',pin);
         end
         
-        %setInput pin
+        %setOuput pin
         function feedback = setOutput(obj,pin)
             feedback = obj.push('setOutput',pin);
         end
