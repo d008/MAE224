@@ -7,7 +7,7 @@ int freq =500;  //frequency
 
 void setup()
 {
-Particle.function("move",slide);    
+Particle.function("move",slide);                    
 Particle.function("attachServo",attachServo);
 Particle.function("detachServo",detachServo);
 Particle.function("setInput",setInput);
@@ -29,7 +29,7 @@ void loop()
 
 }
 
-int slide(String angle) //spark function rot will take the string it receives (turn) and output it as "angle"
+int slide(String angle) //Particle function slide will take the string it receives (turn) and output it as "angle"
 {
     myservo.write(angle.toInt()); //convert angle to an integer and 
     pos = angle.toInt();  //set position as the angle
