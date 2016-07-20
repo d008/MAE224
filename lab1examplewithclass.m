@@ -5,7 +5,6 @@ data = zeros(1,npoints);
 time = data;
 %Enter access token here. This can be found from the settings of your Spark
 %Core account
-atoken = 'bd6ce2e37c8f82ea597c418a87e8d4fd480d01be';
 
 %Enter the core ID
 core =  'steve';
