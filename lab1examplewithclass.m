@@ -1,38 +1,22 @@
 %% Read Data Example
-%Number of Data Points
-npoints = 100;
-data = zeros(1,npoints);
-time = data;
+
 %Enter access token here. This can be found from the settings of your Spark
 %Core account
+atoken = '';
 
 %Enter the core ID
-core =  'steve';
-
+core =  'class1';
 g = Photon(core,atoken);
-g.getFunctions()
-g.getVariables()
-%g.fetch('temp')
-%g.push('f','100')
-%g.flash('untitled.ino')
-%Enter the variable name 
-%varname = 'Flow';
-%varname = 'getPower';
-%This for loop fetches the data and plots it
-tic 
-%% 
-%g.push('setPower','0')
-for n = 1:1:npoints    
-    temp = g.fetch('pressure')
-    %temp = g.push('functionname', 'functionargs')
-    data(n) = temp;
-    time(n) = toc;
-    if n > 10001
-    plot(time(n-100:n),data(n-100:n),'k-s','MarkerSize',20,'MarkerFaceColor','k');
-    else
-    plot(time(1:n),data(1:n),'k-s','MarkerSize',20,'MarkerFaceColor','k');
-    end
-    pause(1)
-    %g.push('turn',int2str(50));
+g.getConnectedDevices()
+N = 40;
+data = zeros(1,N);
+time = zeros(1,N);
+g.setInput('A4');
+tic
+for i = 1:N
+    i
+    data(i) = g.analogRead('A4');
+    time(i) = toc;
+    pause(0.5)
 end
-toc
+plot(time,data)
