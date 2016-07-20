@@ -12,8 +12,9 @@ classdef Photon < handle
     properties (SetAccess = protected, GetAccess = private)
         token
     end
+    
     methods
-        %Builder: Each SparkCore has a name and a token
+        %Builder: Each Photon has a name and a token
         function obj = Photon(name, accestoken)
             obj.coreID = name;
             obj.token = accestoken;
@@ -51,6 +52,7 @@ classdef Photon < handle
             feedback = a.return_value;
         end
         
+        %flash code contained locally to the particle photon
         function feedback  = flash(obj,file)
             URL = strcat('curl -X PUT -F file=@',file);
             URL = strjoin({URL,obj.url})
@@ -58,7 +60,64 @@ classdef Photon < handle
             URL = strcat(URL,'''')
             data = unix(URL)
         end
+        %move servo to angle
+        function feedback = move(obj,angle)
+            feedback = obj.push('move',angle);
+        end
         
+        %Attach a servo to a pin given as a string
+        function feedback = attachServo(obj,pin)
+            feedback = obj.push('attachServo',pin);
+        end
+        
+        %Detach a servo to a pin given as a string
+        function feedback = detachServo(obj)
+            feedback = obj.push('attachServo','');
+        end
+        
+        %setInput pin
+        function feedback = setInput(obj,pin)
+            feedback = obj.push('setInput',pin);
+        end
+        
+        %setInput pin
+        function feedback = setOutput(obj,pin)
+            feedback = obj.push('setOutput',pin);
+        end
+        
+        %setInput pin
+        function feedback = getPinMode(obj,pin)
+            feedback = obj.push('pinMode',pin);
+            if feedback ==1;
+                fprintf('INPUT\n')
+            else
+                fprintf('OUTPUT\n')
+            end
+        end
+        
+        function feedback = analogRead(obj,pin)
+            feedback = obj.push('analogRead',pin);
+        end
+        
+        function feedback = digitalRead(obj,pin)
+            feedback = obj.push('digitalRead',pin);
+        end
+        
+        function feedback = analogWrite(obj,pin,value)
+            feedback = obj.push('analogWrite',pin,strcat(pin,int2str(value)));
+        end
+        
+        function feedback = digitalWrite(obj,pin,value)
+            feedback = obj.push('digitalWrite',pin,strcat(pin,int2str(value)));
+        end
+        
+        function feedback = setFreq(obj,value)
+            feedback = obj.push('setFreq',value);
+        end
+        
+        function feedback = getTone(obj,pin)
+            feedback = obj.push('getPulse',pin);
+        end
     end
 end
 
