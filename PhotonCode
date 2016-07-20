@@ -3,7 +3,7 @@
 Servo myservo;  // create servo object to control a servo
 
 int pos = 70;    // variable to store the servo position
-int freq =500;
+int freq =500;  //frequence
 
 void setup()
 {
