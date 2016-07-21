@@ -1,6 +1,10 @@
-from pithy import *
-import json
+#from pithy import *
 
+
+
+import json
+from pylab import *
+from commands import getoutput as go
 class photon:
     """A particle object belongs to a class developed to help you communicate to your photon in the wild. Each photon has two attributes that it needs to work.
 
@@ -228,7 +232,7 @@ class photon:
         
         
 if __name__ == "__main__":
-    ac = "abs123"
+    ac = "abc123"
     g = photon("class1",ac)
     g.getDevices()
     print g.setFreq(500)
