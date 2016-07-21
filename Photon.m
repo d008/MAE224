@@ -116,12 +116,24 @@ classdef Photon < handle
         
         %setInput pin
         function feedback = setInput(obj,pin)
-            feedback = obj.push('setInput',pin);
+            str = obj.fetch('String2');
+            str = strsplit(str,',');
+            obj.getPin(pin)+1;
+            check = str2num(str{obj.getPin(pin)+1});
+            if check == -1
+                feedback = obj.push('setInput',pin);
+            end
         end
         
         %setOuput pin
         function feedback = setOutput(obj,pin)
-            feedback = obj.push('setOutput',pin);
+            str = obj.fetch('String2');
+            str = strsplit(str,',');
+            obj.getPin(pin)+1;
+            check = str2num(str{obj.getPin(pin)+1});
+            if check == -1
+                feedback = obj.push('setOutput',pin);
+            end
         end
         
         %setInput pin
@@ -135,6 +147,12 @@ classdef Photon < handle
         end
         
         function feedback = analogRead(obj,pin)
+            %{
+            str = obj.fetch('String');
+            str = strsplit(str,',');
+            obj.getPin(pin)+1;
+            feedback = str2num(str{obj.getPin(pin)+1});
+            %}
             feedback = obj.push('analogRead',pin);
         end
         
@@ -143,11 +161,12 @@ classdef Photon < handle
         end
         
         function feedback = analogWrite(obj,pin,value)
-            feedback = obj.push('analogWrite',pin,strcat(pin,int2str(value)));
+            feedback = obj.push('analogWrite',strcat(pin,',',int2str(value)));
         end
         
         function feedback = digitalWrite(obj,pin,value)
-            feedback = obj.push('digitalWrite',pin,strcat(pin,int2str(value)));
+            obj.setOutput(pin);
+            feedback = obj.push('digitalWrite',strcat(pin,',',int2str(value)));
         end
         
         function feedback = setFreq(obj,value)
@@ -156,6 +175,10 @@ classdef Photon < handle
         
         function feedback = getTone(obj,pin)
             feedback = obj.push('getPulse',pin);
+        end
+        
+        function feedback = getPin(obj,pin)
+            feedback = obj.push('getPin',pin);
         end
     end
 end
