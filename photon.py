@@ -229,7 +229,7 @@ class photon:
         
 if __name__ == "__main__":
     ac = "abs123"
-    g = particle("class1",ac)
+    g = photon("class1",ac)
     g.getDevices()
     print g.setFreq(500)
     print g.setInput('A0')
