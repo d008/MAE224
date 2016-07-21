@@ -153,14 +153,17 @@ classdef Photon < handle
             obj.getPin(pin)+1;
             feedback = str2num(str{obj.getPin(pin)+1});
             %}
+            obj.setInput(pin);
             feedback = obj.push('analogRead',pin);
         end
         
         function feedback = digitalRead(obj,pin)
+            obj.setInput(pin);
             feedback = obj.push('digitalRead',pin);
         end
         
         function feedback = analogWrite(obj,pin,value)
+            obj.setOutput(pin);
             feedback = obj.push('analogWrite',strcat(pin,',',int2str(value)));
         end
         
