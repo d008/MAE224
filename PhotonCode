@@ -1,221 +1,73 @@
-#include <string.h>
 
-Servo myservo;  // create servo object to control a servo
+servocode.ino  
 
-int pos = 70;    // variable to store the servo position
-int freq =2000;
-int memory[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-int read[18] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-String strTemp ="";
-String strTemp2 ="";
-void setup()
-{
-setADCSampleTime(ADC_SampleTime_480Cycles);
-Particle.function("move",slide);    
-Particle.function("attachServo",attachServo);
-Particle.function("detachServo",detachServo);
-Particle.function("setInput",setInput);
-Particle.function("setOutput",setOutput);
-Particle.function("pinMode",pMode);
-Particle.function("getPin",getPin);
-Particle.function("analogWrite",awrite);
-Particle.function("analogRead",aread);
-Particle.function("digitalWrite",dwrite);
-Particle.function("digitalRead",dread);
-Particle.function("setFreq",setf);
-Particle.function("getPulse",getPulse);
-Particle.variable("position",pos);
-Particle.variable("frequency",freq);
-Particle.variable("String",strTemp);
-Particle.variable("String2",strTemp2);
-
-}
-
-void loop()
-{
-for(int n = 10;n<=17;n++)
-{
-
-    if(read[n] == 0)
-    {
-        analogWrite(n,memory[n],freq);
-    }
-    else if (read[n] == 1)
-    {
-        memory[n] = analogRead(n);
-    }
-}
-for(int n = 0;n<=7;n++)
-{
-
-    if(read[n] == 0)
-    {
-        digitalWrite(n,memory[n]);
-    }
-   else if (read[n] == 1)
-    {
-        memory[n]=digitalRead(n);
-    }
-}
-
-    strTemp = "";
-    strTemp2 = "";
-    for(int n = 0;n<17;n+=1)
-    {
-        strTemp.concat(String(memory[n]));
-        strTemp.concat(',');
-        strTemp2.concat(String(read[n]));
-        strTemp2.concat(',');
-    }
-    strTemp.concat(String(memory[17]));
-    strTemp2.concat(String(read[17]));
-
-
-}
-
-int slide(String angle) //spark function rot will take the string it receives (turn) and output it as "angle"
-{
-    myservo.write(angle.toInt()); //convert angle to an integer and 
-    pos = angle.toInt();  //set position as the angle
-    delay(10);
-    return pos; //necessary for the servo
-}
-
-int getPin(String pin) //Attach a servo to a pin
-{
-    if(pin.equals("A1")){
-        return A1;
-    }
-    else if(pin.equals("A2")){
-        return A2;
-    }
-    else if(pin.equals("A3")){
-        return A3;
-    }
-    else if(pin.equals("A4")){
-        return A4;
-    }
-    else if(pin.equals("A5")){
-        return A5;
-    }
-    else if(pin.equals("A6")){
-        return A6;
-    }
-    else if(pin.equals("A7")){
-        return A7;
-    }
-    else if(pin.equals("A0")){
-        return A0;
-    }
-    else if(pin.equals("D0")){
-        return D0;
-    }
-    else if(pin.equals("D1")){
-        return D1;
-    }
-    else if(pin.equals("D2")){
-        return D2;
-    }
-    else if(pin.equals("D3")){
-        return D3;
-    }
-    else if(pin.equals("D4")){
-        return D4;
-    }
-    else if(pin.equals("D5")){
-        return D5;
-    }
-    else if(pin.equals("D6")){
-        return D6;
-    }
-    else if(pin.equals("D7")){
-        return D7;
-    }
-    else{
-        return -1;
-    }
-}
-
-int attachServo(String pin) //Attach a servo to a pin
-{
-    int p = getPin(pin);
-    if(p>-1)
-    {
-        myservo.attach(p); //convert pin to an integer  
-        delay(10);
-        return p; 
-    }
-        return -1;
-}
-
-int detachServo(String pin) //Detach a servo to a pin
-{
-
-        myservo.detach(); //convert pin to an integer  
-        delay(10);
-        return 1; 
-
-}
-
-int setInput(String pin)
-{
-    int p = getPin(pin);
-    
-    if(p>-1)
-    {
-        pinMode(p, INPUT);
-        read[p] = 1;
-        return 1;
-    }
-        return -1;
-
-}
-
-int setOutput(String pin)
-{
-    int p = getPin(pin);
-    if(p>-1)
-    {
-        pinMode(p, OUTPUT);
-        read[p] = 0;
-        return 1;
-    }
-        return -1;
-}
-
-int pMode(String pin)
-{
-    int p = getPin(pin);
-    if (getPinMode(p)==INPUT) 
-    {
-      return 1;
-    }
-    return 0;
-}
-
-int awrite(String pin)
-{
-    int t = pin.indexOf(",");
-    int p = getPin(pin.substring(0,t));
-    //int t2 = pin.indexOf(",",t);
-    int t3 = pin.lastIndexOf(",");
-    String p1 = pin.substring(t3+1);
-    int val = p1.toInt();
-    //pinMode(p,OUTPUT);
-
+
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
     read[p] = 0; 
     
     memory[p] = val;
     return val;
 }
-
 int aread(String pin)
 {
     int p = getPin(pin);
     return memory[p];
-
 }
-
 int dwrite(String pin)
 {
     int t = pin.indexOf(",");
@@ -224,7 +76,6 @@ int dwrite(String pin)
     int t3 = pin.lastIndexOf(",");
     String p1 = pin.substring(t3+1);
     int val = p1.toInt();
-
         if(abs(val)==0){
             memory[p] = 0;
             return 0;
@@ -233,29 +84,22 @@ int dwrite(String pin)
             memory[p] = 1;
                 return 1;
         }
-
     return val;
 }
-
 int dread(String pin)
 {
-
     int p = getPin(pin);
     return memory[p];
-
 }
-
 int setf(String fre) 
 {
     freq =fre.toInt();  
     return freq; 
 }
-
 double getPulse(String pin) 
 {
     int p = getPin(pin);
     double duration = pulseIn(p, HIGH);    
     duration += pulseIn(p, LOW);   
     return 1.0/(duration/1000000.0);
-
 }
