@@ -1,7 +1,7 @@
 from pithy import *
 import json
 
-class particle:
+class photon:
     """A particle object belongs to a class developed to help you communicate to your photon in the wild. Each photon has two attributes that it needs to work.
 
     Attributes:
@@ -228,7 +228,7 @@ class particle:
         
         
 if __name__ == "__main__":
-    ac = "bd6ce2e37c8f82ea597c418a87e8d4fd480d01be"
+    ac = "abs123"
     g = particle("class1",ac)
     g.getDevices()
     print g.setFreq(500)
