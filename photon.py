@@ -4,7 +4,9 @@
 
 import json
 from pylab import *
-from commands import getoutput as go
+from urllib2 import urlopen, Request
+from urllib import urlencode
+
 class photon:
     """A particle object belongs to a class developed to help you communicate to your photon in the wild. Each photon has two attributes that it needs to work.
 
@@ -116,13 +118,28 @@ class photon:
         #return self.functions['variables']
         
     def cmd(self,cmd,params=None):
+        
         """Simple helper function to access the internet. You should not need to call this function ever, ever ,ever. When you instantiate a particle object, all of the particle functions and variables you wish to access are pushed to specific websites on the Particle servers. This class accesses that data by creating a website and passing your id and access token """
-        base = "https://api.particle.io/v1/devices"
+        url = "https://api.particle.io/v1/devices"
+        request = Request(url+cmd)
+        request.add_header('Authorization', 'Bearer %s' % (self.access))
+        if params != None:
+            post_params = {'args' : params,}
+            post_params = urlencode(post_params)
+            response = urlopen(request,post_params)
+        else:
+            response = urlopen(request)
+
+        data = response.read()
+        interp = json.loads(data)
+        return interp
+        '''
         cmder = "curl -s %s%s -H 'Authorization: Bearer %s'" %(base,cmd,self.access)
         if params != None:
             cmder += " -d args=%s" % params
         out = go(cmder)
         return json.loads(out)
+        '''
 
     def fetch(self,var):
         """Returns the value associated with the given Particle variable.
