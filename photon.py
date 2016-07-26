@@ -1,11 +1,10 @@
-#from pithy import *
-
-
-
 import json
 from pylab import *
 from urllib2 import urlopen, Request
 from urllib import urlencode
+import time
+import os,os.path
+import requests
 
 class photon:
     """A particle object belongs to a class developed to help you communicate to your photon in the wild. Each photon has two attributes that it needs to work.
@@ -182,16 +181,24 @@ class photon:
     def flash(self,file=None):
         if file == None:
             return "Empty File"
-        elif go("ls files").find(file) == -1:
+        elif os.path.isfile(file) == 0:
             return "No Such File"
+        elif file.endswith('.ino') or file.endswith('.cpp'):
+            base = "https://api.particle.io/v1/devices/%s" %(self.name)
+            headers = {'Authorization':"Bearer %s " %self.access}
+            files = {'file': open(file, 'rb')}
+            r = requests.put(base,headers=headers,files=files)
+            return r.json()
+        '''
         base = "https://api.particle.io/v1/devices/%s" %(self.name)
         cmder = "curl -s -X PUT -F file=@files/%s %s -H 'Authorization: Bearer %s'" %(file,base,self.access)
         out = go(cmder)
+        print cmder
         if(json.loads(out)['ok']):
             return json.loads(out)['message']
         else:
             return json.loads(out)['output']
-        
+        '''
         
     def move(self,angle):
         return self.push('move',angle)
@@ -252,6 +259,8 @@ if __name__ == "__main__":
     ac = "abc123"
     g = photon("class1",ac)
     g.getDevices()
+    t = g.flash('PhotonCode.ino')
+    time.sleep(10)
     print g.setFreq(500)
     print g.setInput('A0')
     print g.setInput('A0')
