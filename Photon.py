@@ -1,16 +1,12 @@
-#from pithy import *
-
-
-
 import json
 from pylab import *
 from urllib2 import urlopen, Request
 from urllib import urlencode
 import time
-import os,os.path
+import os.path
 import requests
 
-class photon:
+class Photon:
     """A particle object belongs to a class developed to help you communicate to your photon in the wild. Each photon has two attributes that it needs to work.
 
     Attributes:
@@ -80,6 +76,7 @@ class photon:
                 else:
                     return False
         return False
+
         #return self.devices
         
     def getFunctions(self):
@@ -97,8 +94,12 @@ class photon:
         PithyName2
         """
         self.functions = self.cmd("/%s/"%self.name)
-        return json.dumps(self.functions['functions'], sort_keys=True, indent=4, separators=(',', ': '))
-        #return self.functions['functions']
+        print json.dumps(self.functions['functions'], sort_keys=True, indent=4, separators=(',', ': '))
+        funcs = self.functions['functions']
+        for (i,j) in enumerate(funcs):
+            funcs[i] = str(j)
+        return funcs
+
         
     def getVariables(self):
         """Returns the name and types of variables for the device correspoding to the Photon of the same name. This is handy for knowing what variables the Photon is able to return.
@@ -117,8 +118,11 @@ class photon:
         PithyName4: int
         """        
         self.functions = self.cmd("/%s/" %self.name)
-        return json.dumps(self.functions['variables'], sort_keys=True, indent=4, separators=(',', ': '))
-        #return self.functions['variables']
+        print json.dumps(self.functions['variables'], sort_keys=True, indent=4, separators=(',', ': '))
+        funcs = self.functions['variables']
+        return funcs    
+
+
         
     def cmd(self,cmd,params=None):
         
@@ -185,7 +189,9 @@ class photon:
             headers = {'Authorization':"Bearer %s " %self.access}
             files = {'file': open(file, 'rb')}
             r = requests.put(base,headers=headers,files=files)
-            return r.json()
+            r =  r.json()
+            print "Message: " + str(r['message'])
+            print "Flash OK:" + str(r['ok'])
         
     def move(self,angle):
         return self.push('move',angle)
@@ -209,16 +215,16 @@ class photon:
     def setOutput(self,pin):
         temp = self.fetch('String2')
         temp = temp.split(',')
-        if int(unicode(temp[self.getPin(pin)])) == -1:
+        if int(unicode(temp[self.getPin(pin)])) == 0:
             return self.push('setOutput',pin)
         return -1
         
     def getPinMode(self,pin):
         t = self.push('setOutput',pin)    
         if t == 1:
-            print 'INPUT'
+            print pin +' is an INPUT pin'
         elif t==0:
-            print 'OUTPUT'
+            print pin + ' is an OUTPUT pin'
     
     def analogRead(self,pin):
         return self.push('analogRead',pin)
@@ -233,21 +239,23 @@ class photon:
         return self.push('digitalWrite',pin+str(value))
 
     def setFreq(self,value):
-        return self.push('setFreq',value)
+        t= self.push('setFreq',value)
+        print "Analog write Frequency is now %d Hz" %t
+        return t
         
     def getTone(self,pin):
         return self.push('getPulse',pin)
         
-        
-        
-        
-        
 if __name__ == "__main__":
     ac = "abc123"
-    g = photon("class1",ac)
+    g = Photon("class1",ac)
     g.getDevices()
-    t = g.flash('PhotonCode.ino')
+    g.flash('PhotonCode.ino')
     time.sleep(10)
+    g.getFunctions()
+    t = g.getVariables()
     print g.setFreq(500)
     print g.setInput('A0')
     print g.setInput('A0')
+    print g.analogRead('A0')
+    #print g.flash("temp.ino")
