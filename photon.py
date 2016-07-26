@@ -1,3 +1,7 @@
+#from pithy import *
+
+
+
 import json
 from pylab import *
 from urllib2 import urlopen, Request
@@ -132,13 +136,6 @@ class photon:
         data = response.read()
         interp = json.loads(data)
         return interp
-        '''
-        cmder = "curl -s %s%s -H 'Authorization: Bearer %s'" %(base,cmd,self.access)
-        if params != None:
-            cmder += " -d args=%s" % params
-        out = go(cmder)
-        return json.loads(out)
-        '''
 
     def fetch(self,var):
         """Returns the value associated with the given Particle variable.
@@ -189,16 +186,6 @@ class photon:
             files = {'file': open(file, 'rb')}
             r = requests.put(base,headers=headers,files=files)
             return r.json()
-        '''
-        base = "https://api.particle.io/v1/devices/%s" %(self.name)
-        cmder = "curl -s -X PUT -F file=@files/%s %s -H 'Authorization: Bearer %s'" %(file,base,self.access)
-        out = go(cmder)
-        print cmder
-        if(json.loads(out)['ok']):
-            return json.loads(out)['message']
-        else:
-            return json.loads(out)['output']
-        '''
         
     def move(self,angle):
         return self.push('move',angle)
@@ -264,4 +251,3 @@ if __name__ == "__main__":
     print g.setFreq(500)
     print g.setInput('A0')
     print g.setInput('A0')
-    #print g.flash("temp.ino")
