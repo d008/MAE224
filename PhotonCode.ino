@@ -3,7 +3,8 @@
 Servo myservo;   // Create servo object to control a servo 
 int pos = 70;    // Store the position of the servo
 int freq =2000;  // Set the frequency of the analogWrite()
-int memory[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // Store the memory of the read data or the written 
+int memory[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // Store the memory of the read data or the written
+int t = 100; //Set milliseconds of averaging
 int read[18] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; //Stores whether the pin is reading (1), writing (0), or uninitialized(-1)
 String strTemp =""; //memory as string
 String strTemp2 =""; // read as string
@@ -44,7 +45,6 @@ for(int n = 10;n<=17;n++)
     else if (read[n] == 1)
     {
         //Iterate t times with a 1 ms delay to average out the analog reads
-        int t = 100;
         double reading = 0;
         for(int m =0;m<t;m++)
         {
@@ -256,6 +256,14 @@ int dread(String pin)   //Read a value from a digital pin
 
     int p = getPin(pin);
     return memory[p];
+
+}
+
+int setAvgTime(String val)   //Read a value from a digital pin
+{
+
+    int t = val.toInt();
+    return t;
 
 }
 
