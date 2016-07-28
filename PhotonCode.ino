@@ -1,6 +1,6 @@
 #include <string.h>
 
-Servo myservo;   // Create servo object to control a servo 
+Servo myservo;   // Create servo object to control a servo
 int pos = 70;    // Store the position of the servo
 int freq =2000;  // Set the frequency of the analogWrite()
 int memory[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // Store the memory of the read data or the written
@@ -23,6 +23,8 @@ Particle.function("digitalWrite",dwrite);       //Particle function to write val
 Particle.function("digitalRead",dread);         //Particle function to read value from digital pin
 Particle.function("setFreq",setf);              //Particle function to set the analog write frequency
 Particle.function("getPulse",getPulse);         //Particle function to get the input frequency on an analog pin
+Particle.function("setAvgTime",setAvgTime);         //Particle function to get the input frequency on an analog pin
+
 Particle.variable("position",pos);              //Particle variable to get the position of the servo
 Particle.variable("frequency",freq);            //Particle variable to get the frequency of the analog write
 Particle.variable("String",strTemp);            //Particle variable to get the memory string
@@ -58,7 +60,7 @@ for(int n = 10;n<=17;n++)
 //Read through the digital pins
 for(int n = 0;n<=7;n++)
 {
-//If a writing pin 
+//If a writing pin
     if(read[n] == 0)
     {
         //Write the value to the pin
@@ -76,7 +78,7 @@ for(int n = 0;n<=7;n++)
 
     strTemp = "";
     strTemp2 = "";
-    
+
     //Concatenate array values into the string
     for(int n = 0;n<17;n+=1)
     {
@@ -93,7 +95,7 @@ for(int n = 0;n<=7;n++)
 
 int slide(String angle) //spark function slide will take the string it receives (turn) and output it as "angle"
 {
-    myservo.write(angle.toInt()); //convert angle to an integer and 
+    myservo.write(angle.toInt()); //convert angle to an integer and
     pos = angle.toInt();  //set position as the angle
     delay(10);
     return pos; //necessary for the servo
@@ -156,21 +158,21 @@ int getPin(String pin) //Translate the string of the pin to an integer
 
 int attachServo(String pin) //Attach a servo to a pin
 {
-    int p = getPin(pin); //convert pin to an integer  
+    int p = getPin(pin); //convert pin to an integer
     if(p>-1)
     {
-        myservo.attach(p); 
+        myservo.attach(p);
         delay(10);
-        return p; 
+        return p;
     }
         return -1;
 }
 
 int detachServo(String pin) //Detach a servo to a pin
 {
-        myservo.detach(); //convert pin to an integer  
+        myservo.detach(); //convert pin to an integer
         delay(10);
-        return 1; 
+        return 1;
 }
 
 int setInput(String pin)    //Set the pin to an input pin
@@ -200,7 +202,7 @@ int setOutput(String pin)   //Set the pin to an output pin
 int pMode(String pin)       //Get whether a pin is input(1) or output(0)
 {
     int p = getPin(pin);
-    if (getPinMode(p)==INPUT) 
+    if (getPinMode(p)==INPUT)
     {
       return 1;
     }
@@ -217,8 +219,8 @@ int awrite(String pin)  //Takes an input argument with syntax "pin,value" ex. "A
     int val = p1.toInt();
     //pinMode(p,OUTPUT);
 
-    read[p] = 0; 
-    
+    read[p] = 0;
+
     memory[p] = val;
     return val;
 }
@@ -269,15 +271,15 @@ int setAvgTime(String val)   //Read a value from a digital pin
 
 int setf(String fre)    //Set the frequency of the analog write
 {
-    freq =fre.toInt();  
-    return freq; 
+    freq =fre.toInt();
+    return freq;
 }
 
 double getPulse(String pin) //get the tone of the analog read
 {
     int p = getPin(pin);
-    double duration = pulseIn(p, HIGH);    
-    duration += pulseIn(p, LOW);   
+    double duration = pulseIn(p, HIGH);
+    duration += pulseIn(p, LOW);
     return 1.0/(duration/1000000.0);
 
 }
