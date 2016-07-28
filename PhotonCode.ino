@@ -2,10 +2,13 @@
 
 Servo myservo;   // Create servo object to control a servo
 int pos = 70;    // Store the position of the servo
+int servoPin = -1;
 int freq =2000;  // Set the frequency of the analogWrite()
+int reading[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // Store the memory of the read data or the written
+
 int memory[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // Store the memory of the read data or the written
 int t = 100; //Set milliseconds of averaging
-int read[18] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; //Stores whether the pin is reading (1), writing (0), or uninitialized(-1)
+int read[18] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; //Stores whether the pin is reading (1), writing (0), or uninitialized(-1) or Servo (2)
 String strTemp =""; //memory as string
 String strTemp2 =""; // read as string
 void setup()
@@ -35,28 +38,35 @@ Particle.variable("String2",strTemp2);          //Particle variable to get the r
 void loop()
 {
     //Read through the analog pins
-for(int n = 10;n<=17;n++)
+for(int m =0;m<t;m++)
 {
-    // If the pin is a writing pin
-    if(read[n] == 0)
+    for(int n = 10;n<=17;n++)
     {
-        //Write the value
-        analogWrite(n,memory[n],freq);
-    }
-    // If the pin is a reading pin
-    else if (read[n] == 1)
-    {
-        //Iterate t times with a 1 ms delay to average out the analog reads
-        double reading = 0;
-        for(int m =0;m<t;m++)
+        // If the pin is a writing pin
+        if(read[n] == 0)
         {
-            reading += analogRead(n);
-            delay(1);
+            //Write the value
+            analogWrite(n,memory[n],freq);
         }
-        //Store the average value into memory
-        memory[n] = int(reading/t);
+        // If the pin is a reading pin
+        else if (read[n] == 1)
+        {
+            //Iterate t times with a 1 ms delay to average out the analog reads
+                reading[n] += analogRead(n);
+                delay(1);
+            //Store the average value into memory
+        }
     }
 }
+ for(int n = 10;n<=17;n++)
+    {
+       if (read[n] == 1)
+        {
+        memory[n] = int(reading[n]/t);
+        reading[n] = 0;
+        }
+    }
+
 //Read through the digital pins
 for(int n = 0;n<=7;n++)
 {
@@ -162,7 +172,9 @@ int attachServo(String pin) //Attach a servo to a pin
     if(p>-1)
     {
         myservo.attach(p);
+        servoPin = p;
         delay(10);
+        read[p] = 2;
         return p;
     }
         return -1;
@@ -171,6 +183,8 @@ int attachServo(String pin) //Attach a servo to a pin
 int detachServo(String pin) //Detach a servo to a pin
 {
         myservo.detach(); //convert pin to an integer
+        read[servoPin] = -1;
+        servoPin = -1;
         delay(10);
         return 1;
 }
