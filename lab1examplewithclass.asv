@@ -25,13 +25,13 @@ for i = 1:N
     i;
     g.analogWrite('A4',10*i);
     g.digitalWrite('D4',mod(i,2));
-    %pause(1)
+    pause(1)
     temp  = g.analogRead('A3')/4095*3.3
     temp2  = g.digitalRead('D3')
     data(i)  = temp;
     data2(i)  = temp2;
     time(i) = toc;
-    %pause(1)
+    pause(1)
 end
 
 plot(time,data)

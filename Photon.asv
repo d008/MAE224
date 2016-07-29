@@ -184,41 +184,27 @@ classdef Photon < handle
             feedback = obj.push('getPin',pin);
         end
         
-        function pinOuts(obj)
-            left = '<--';
-            right = '-->';
+        function string = pinOuts(obj)
+            left = '<--\t';
+            right = '-->\t';
             sp5 = '     ';
             sp4 = '    ';
-            i = 'INPUT';
-            o = 'OUTPUT';
-            s = 'SERVO';
+            i = 'INPUT\t';
+            o = 'OUTPUT\t';
+            s = 'SERVO\t';
             string = obj.fetch('String2');
             string = strsplit(string,',');
-            temp = sprintf('\n\t\t\t ___________ \t\t\t');
-            temp = strcat(temp,'\n');
+            temp = sprintf('\n\t\t\t _________ \t\t\t\n');
             for q = 1:8
-                if str2num(string{q+10})==1 
-                    temp = strcat(temp,' ',i,'\t',right,'\t','|O:A',num2str(q-1),' \t');
-                elseif str2num(string{q+10})==0
-                    temp = strcat(temp,o,'\t',left,'\t','|O:A',num2str(q-1),' \t');
-                elseif str2num(string{q+10})==2
-                    temp = strcat(temp,s,'\t',left,'\t','|O:A',num2str(q-1),' \t');
-                else
-                    temp =strcat(temp,'\t\t\t','|O:A',num2str(q-1),' \t');
-                end
                 if str2num(string{q})==1 
-                    temp = strcat(temp,'D',num2str(q-1),':O|  \b',right,'   \b',i,'\n');
+                    temp = strcat(temp,i,right,'A',num2str(q-1),'\t\t\t');
                 elseif str2num(string{q})==0
-                    temp = strcat(temp,'D',num2str(q-1),':O|  \b',left,'  \b',o,'\n');
-                elseif str2num(string{q})==2
-                    temp = strcat(temp,'D',num2str(q-1),':O|  \b',right,'  \b',s,'\n');               
+                    temp = strcat(temp,o,left,'|\n');
                 else
-                    temp = strcat(temp,'D',num2str(q-1),':O|','\t\t\t','\n');
+                    temp = strcat(temp,'\t\t\t','|\n');
                 end
+                        
             end
-            %temp = strcat(temp,'\t\t\t','|\t\t\t|','\t\t\t','\n');
-            temp = strcat(temp,'\t\t\t',' \\\t\t   /','\t\t\t','\n');
-            temp = strcat(temp,'\t\t\t','  \\_______/','\t\t\t','\n\n');
             fprintf(temp)
         end
     end
