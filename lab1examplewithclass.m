@@ -2,7 +2,7 @@
 
 %Enter access token here. This can be found from the settings of your Spark
 %Core account
-atoken = 'abc123';
+atoken = 'bd6ce2e37c8f82ea597c418a87e8d4fd480d01be';
 
 %Enter the core ID
 core =  'class1';

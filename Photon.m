@@ -198,11 +198,11 @@ classdef Photon < handle
             temp = strcat(temp,'\n');
             for q = 1:8
                 if str2num(string{q+10})==1 
-                    temp = strcat(temp,' ',i,'\t',right,'\t','|O:A',num2str(q-1),' \t');
+                    temp = strcat(temp,'\t',i,'\t',right,'\t','|O:A',num2str(q-1),' \t');
                 elseif str2num(string{q+10})==0
-                    temp = strcat(temp,o,'\t',left,'\t','|O:A',num2str(q-1),' \t');
+                    temp = strcat(temp,'\t',o,'\t',left,'\t','|O:A',num2str(q-1),' \t');
                 elseif str2num(string{q+10})==2
-                    temp = strcat(temp,s,'\t',left,'\t','|O:A',num2str(q-1),' \t');
+                    temp = strcat(temp,'\t',s,'\t',left,'\t','|O:A',num2str(q-1),' \t');
                 else
                     temp =strcat(temp,'\t\t\t','|O:A',num2str(q-1),' \t');
                 end
@@ -217,7 +217,7 @@ classdef Photon < handle
                 end
             end
             %temp = strcat(temp,'\t\t\t','|\t\t\t|','\t\t\t','\n');
-            temp = strcat(temp,'\t\t\t',' \\\t\t   /','\t\t\t','\n');
+            temp = strcat(temp,'\t\t\t',' \\\t   /','\t\t\t','\n');
             temp = strcat(temp,'\t\t\t','  \\_______/','\t\t\t','\n\n');
             fprintf(temp)
         end
