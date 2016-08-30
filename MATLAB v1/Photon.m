@@ -3,7 +3,7 @@ classdef Photon < handle
     %   Instantiate Particle photon objects as obj = Photon(name,
     %   accestoken), where name is the name or coreID of the Photon and
     %   the accesstoken is the access token given by the website
-    
+    %   Requires cURL to flash local code the Photons.
     properties
         coreID;
         url;
@@ -146,6 +146,7 @@ classdef Photon < handle
             end
         end
         
+        %reads the value of an analog pin returning a value of 0-4095
         function feedback = analogRead(obj,pin)
             %{
             str = obj.fetch('String');
@@ -157,33 +158,40 @@ classdef Photon < handle
             feedback = obj.push('analogRead',pin);
         end
         
+        %reads the value of a digital pin
         function feedback = digitalRead(obj,pin)
             obj.setInput(pin);
             feedback = obj.push('digitalRead',pin);
         end
         
+        %writes a 0-255 value to an analog pin
         function feedback = analogWrite(obj,pin,value)
             obj.setOutput(pin);
             feedback = obj.push('analogWrite',strcat(pin,',',int2str(value)));
         end
         
+        %writes a 0 or 1 value to a digital pin
         function feedback = digitalWrite(obj,pin,value)
             obj.setOutput(pin);
             feedback = obj.push('digitalWrite',strcat(pin,',',int2str(value)));
         end
         
+        %Set the frequency of the analogWrite
         function feedback = setFreq(obj,value)
             feedback = obj.push('setFreq',value);
         end
         
+        %Return the frequency of a pwm pin input  
         function feedback = getTone(obj,pin)
             feedback = obj.push('getPulse',pin);
         end
         
+        %Return whether a pin is an input or an output 
         function feedback = getPin(obj,pin)
             feedback = obj.push('getPin',pin);
         end
         
+        %%EXPERIMENTAL
         function pinOuts(obj)
             left = '<--';
             right = '-->';
