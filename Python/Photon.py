@@ -185,23 +185,7 @@ class Photon:
     
     def flash(self,file=None):
         """Flashes the source code located at the filepath given by the String file.
-            E.G.
             
-            If you Photon code contains the following lines:
-            Particle.function("PithyName1",function2Execute);
-            Particle.function("PithyName2",function3Execute);
-            
-            int funcion2Execute(String args)
-            {
-            ...
-            }
-            int funcion3Execute(String args)
-            {
-            ...
-            }
-        
-            
-            If you call push("PithyName1","strArg") then the code will send the String argument *strArg* to the particle server and tell the Photon to execute the function *function2Execute* using the argument *strArgs*.
         """
         if file == None:
             return "Empty File"
@@ -217,18 +201,28 @@ class Photon:
             print "Flash OK:" + str(r['ok'])
         
     def move(self,angle):
+        """Requires that a servo be attached to the Photon. Make sure to call attachServo(String pin) prior to trying to call move(int angle). Takes a single int argument, angle, and moves the servo attached to the Photon to that angle.
+        """
         return self.push('move',angle)
         
     def attachServo(self,pin):
+        """Takes a single String argument, pin, and attaches a servo to that pin.
+        """
         return self.push('attachServo',pin)
     
     def getPin(self,pin):
+        """Takes a single String argument pin and returns the integer equivalent of that pin.
+        """
         return self.push('getPin',pin)
     
     def detachServo(self):
+        """Detach the servo from the Photon
+        """
         return self.push('detachServo','')
         
     def setInput(self,pin):
+        """Set one of the io pins to input type. Takes a single String argument, pin, and sets it to an input.
+        """
         temp = self.fetch('String2')
         temp = temp.split(',')
         if int(unicode(temp[self.getPin(pin)])) == -1:
@@ -236,6 +230,8 @@ class Photon:
         return -1
     
     def setOutput(self,pin):
+        """Set one of the io pins to input type. Takes a single String argument, pin, and sets it to an output.
+            """
         temp = self.fetch('String2')
         temp = temp.split(',')
         if int(unicode(temp[self.getPin(pin)])) == 0:
@@ -243,6 +239,7 @@ class Photon:
         return -1
         
     def getPinMode(self,pin):
+        """Takes a single String argument, pin, and returns whether that pin is an input or and output"""
         t = self.push('setOutput',pin)    
         if t == 1:
             print pin +' is an INPUT pin'
@@ -250,23 +247,30 @@ class Photon:
             print pin + ' is an OUTPUT pin'
     
     def analogRead(self,pin):
+        """Takes a single String argument, pin, and returns the analog bit value read from that pin = [0,4096)"""
         return self.push('analogRead',pin)
     
     def digitalRead(self,pin):
+        """Takes a single String argument, pin, and returns the digital bit value read from that pin = 0,1"""
+
         return self.push('digitalRead',pin)
         
     def analogWrite(self,pin,value):
+        """Takes a single String argument, pin, and writes the analog bit value read to that pin=[0,256)"""
         return self.push('analogWrite',pin+str(value))
     
     def digitalWrite(self,pin,value):
+        """Takes a single String argument, pin, and writes the digital bit value read to that pin=0,1"""
         return self.push('digitalWrite',pin+str(value))
 
-    def setFreq(self,value):
-        t= self.push('setFreq',value)
+    def setFreq(self,f):
+        """Set the frequency at which the analog pins are writing data."""
+        t= self.push('setFreq',f)
         print "Analog write Frequency is now %d Hz" %t
         return t
         
     def getTone(self,pin):
+        """Returns the frequency of a square wave from a given pin, passed by String argument pin"""
         return self.push('getPulse',pin)
         
 if __name__ == "__main__":
