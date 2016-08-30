@@ -274,8 +274,8 @@ class Photon:
         return self.push('getPulse',pin)
         
 if __name__ == "__main__":
-    ac = "abc123"
-    g = Photon("class1",ac)
+    ac = "abc123"                   #Change this to your access token
+    g = Photon("class1",ac)         #Change this to your photons name
     g.getDevices()
     g.flash('PhotonCode.ino')
     time.sleep(10)
