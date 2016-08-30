@@ -20,6 +20,10 @@ class Photon:
         getVariables(): Returns the variables known to the Photon. Variables can be accessed 
         fetch(String variable): Returns the value associated with a given variable name
         push(String variable,String argument):Executes the particular funciton with a given String argument
+        flash(String file): Takes String argument that is a given path to code that you want to flash to the Photon.
+        move(int angle):
+        attachServo(int pin)
+        
         
         
     Your Particle Photon code will look something like this:
@@ -180,6 +184,25 @@ class Photon:
         return self.cmd("/%s/%s/" % (self.name,var),params = val)['return_value']
     
     def flash(self,file=None):
+        """Flashes the source code located at the filepath given by the String file.
+            E.G.
+            
+            If you Photon code contains the following lines:
+            Particle.function("PithyName1",function2Execute);
+            Particle.function("PithyName2",function3Execute);
+            
+            int funcion2Execute(String args)
+            {
+            ...
+            }
+            int funcion3Execute(String args)
+            {
+            ...
+            }
+        
+            
+            If you call push("PithyName1","strArg") then the code will send the String argument *strArg* to the particle server and tell the Photon to execute the function *function2Execute* using the argument *strArgs*.
+        """
         if file == None:
             return "Empty File"
         elif os.path.isfile(file) == 0:
@@ -202,8 +225,8 @@ class Photon:
     def getPin(self,pin):
         return self.push('getPin',pin)
     
-    def attachServo(self):
-        return self.push('attachServo','')
+    def detachServo(self):
+        return self.push('detachServo','')
         
     def setInput(self,pin):
         temp = self.fetch('String2')
