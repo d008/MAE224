@@ -1,5 +1,4 @@
 import json
-from matplotlib import pylab
 from pylab import *
 from urllib2 import urlopen, Request
 from urllib import urlencode
