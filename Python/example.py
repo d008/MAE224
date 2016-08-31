@@ -1,6 +1,6 @@
 from Photon import *
 
-atoken = "abc123"                   #Change this to your access
+atoken = "bd6ce2e37c8f82ea597c418a87e8d4fd480d01be"                   #Change this to your access
 name = "class1"                      #Change this to your photons name
 g = Photon(name,atoken)
 g.getDevices()

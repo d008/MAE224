@@ -1,5 +1,10 @@
 import json
+<<<<<<< Updated upstream
 from pylab import *
+=======
+#from matplotlib import pylab
+#from pylab import *
+>>>>>>> Stashed changes
 from urllib2 import urlopen, Request
 from urllib import urlencode
 import time
@@ -63,7 +68,7 @@ class Photon:
     def getDevices(self):
         """Returns the status of any and every device attached to your Particle account. This s handy for finding out if your Photon/Cores are connected to the internet"""
         self.devices = self.cmd("")
-        for i in range(size(self.devices)):
+        for i in range(len(self.devices)):
             if(self.devices[i]['connected']==True):
                 print "%s is connected" %self.devices[i]['name']
             else:
@@ -274,7 +279,7 @@ class Photon:
         return self.push('getPulse',pin)
 
 if __name__ == "__main__":
-    ac = "abc123"                   #Change this to your access token
+    ac = "bd6ce2e37c8f82ea597c418a87e8d4fd480d01be"                   #Change this to your access token
     g = Photon("class1",ac)         #Change this to your photons name
     g.getDevices()
     g.flash('PhotonCode.ino')
