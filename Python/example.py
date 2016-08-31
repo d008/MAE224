@@ -1,8 +1,8 @@
 from Photon import *
 
 atoken = "abc123"                   #Change this to your access
-name = "class1"
-g = Photon(name,atoken)         #Change this to your photons name
+name = "class1"                      #Change this to your photons name
+g = Photon(name,atoken)
 g.getDevices()
 time.sleep(10)
 g.getFunctions()
