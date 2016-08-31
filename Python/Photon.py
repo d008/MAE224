@@ -1,10 +1,6 @@
 import json
-<<<<<<< Updated upstream
-from pylab import *
-=======
 #from matplotlib import pylab
 #from pylab import *
->>>>>>> Stashed changes
 from urllib2 import urlopen, Request
 from urllib import urlencode
 import time
