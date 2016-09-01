@@ -27,7 +27,10 @@ Description of the functions and variables in the Photon class and how to access
 Quick tutorial on how to use the Photon class to read and write data with analog pins
 
 ##[Example 2 - Servos and PWMs](https://github.com/mkfu/MAE224/wiki/Example-2-:-Servos-and-PWMs)
-Quick tutorial on how use a servo with the Photon class and read a PWM signal  
+Quick tutorial on how use a servo with the Photon class and read a PWM signal 
+
+##[Technical Report Guidelines](https://github.com/mkfu/MAE224/wiki/Technical-Report-Guidelines)
+Expectations from technical reports
 ***
 #Labs
 ##[Lab 0 - Particle to Python Communications](https://github.com/mkfu/MAE224/wiki/Lab-0:-Python-to-Particle-Communication)
@@ -35,3 +38,9 @@ Quick tutorial on how the Particle Photon communicates with the Python script
 
 ##[Lab 1 - Hydrostatics](https://github.com/mkfu/MAE224/wiki/Lab-1:--Hydrostatics)
 How does hydrostatics work? Magic?
+
+##[Lab 2 - Particle to Python Communications](https://github.com/mkfu/MAE224/wiki/Lab-0:-Python-to-Particle-Communication)
+Quick tutorial on how the Particle Photon communicates with the Python script
+
+##[Lab 3 - Boundary Layers](https://github.com/mkfu/MAE224/wiki/Lab-3:-Boundary-Layers)
+Where do they come from? and how thick are they?
