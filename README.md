@@ -44,3 +44,8 @@ Quick tutorial on how the Particle Photon communicates with the Python script
 
 ##[Lab 3 - Boundary Layers](https://github.com/mkfu/MAE224/wiki/Lab-3:-Boundary-Layers)
 Where do they come from? and how thick are they?
+
+##[Lab 4 - Lift and Drag](https://github.com/mkfu/MAE224/wiki/Lab-4:-Lift-and-Drag)
+101 ways to explain how planes fly. All of them wrong. (can planes fly upside-down)
+
+***
