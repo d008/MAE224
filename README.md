@@ -1,7 +1,11 @@
 # Introduction
 MAE 224 is the Integrate Science Lab...
 
+<<<<<<< HEAD
 ##Prequisites
+=======
+##Prequisites 
+>>>>>>> origin/master
 
 ### Python
 If you want to run the Python code make sure that you have the most up-to-date version of Python 2.7.x.
@@ -14,6 +18,7 @@ pip install requests
 into the terminal
 
 ###Matlab
+<<<<<<< HEAD
 The Matlab code has been designed to utilize the latest version of Matlab (currently 2016a). Matlab does not support HTML PUT requests. Currently, Matlab will call cURL from a unix terminal to upload local code. This functionality will be added in later editions.  
 ***
 #Tutorials & Documentations
@@ -21,3 +26,11 @@ The Matlab code has been designed to utilize the latest version of Matlab (curre
 Quickly setup your new Photon on the lab computers
 
 ## Class Description
+=======
+The Matlab code has been designed to utilize the latest version of Matlab (currently 2016a). Matlab does not support HTML PUT requests. Currently, Matlab will call cURL from a unix terminal to upload local code. This functionality will be added in later editions. 
+
+#Labs
+## Quick Setup
+Quickly setup your new Photon on the lab computers - 
+## 
+>>>>>>> origin/master
