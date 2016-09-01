@@ -224,20 +224,12 @@ class Photon:
     def setInput(self,pin):
         """Set one of the io pins to input type. Takes a single String argument, pin, and sets it to an input.
         """
-        temp = self.fetch('String2')
-        temp = temp.split(',')
-        if int(unicode(temp[self.getPin(pin)])) == -1:
-            return self.push('setInput',pin)
-        return -1
+        return self.push('setInput',pin)
 
     def setOutput(self,pin):
         """Set one of the io pins to input type. Takes a single String argument, pin, and sets it to an output.
             """
-        temp = self.fetch('String2')
-        temp = temp.split(',')
-        if int(unicode(temp[self.getPin(pin)])) == 0:
-            return self.push('setOutput',pin)
-        return -1
+        return self.push('setOutput',pin)
 
     def getPinMode(self,pin):
         """Takes a single String argument, pin, and returns whether that pin is an input or and output"""
@@ -249,20 +241,24 @@ class Photon:
 
     def analogRead(self,pin):
         """Takes a single String argument, pin, and returns the analog bit value read from that pin = [0,4096)"""
+        self.setInput(pin)
         return self.push('analogRead',pin)
 
     def digitalRead(self,pin):
+        
         """Takes a single String argument, pin, and returns the digital bit value read from that pin = 0,1"""
-
+        self.setInput(pin)
         return self.push('digitalRead',pin)
 
     def analogWrite(self,pin,value):
         """Takes a single String argument, pin, and writes the analog bit value read to that pin=[0,256)"""
-        return self.push('analogWrite',pin+str(value))
+        self.setOutput(pin)
+        return self.push('analogWrite',pin+','+str(value))
 
     def digitalWrite(self,pin,value):
         """Takes a single String argument, pin, and writes the digital bit value read to that pin=0,1"""
-        return self.push('digitalWrite',pin+str(value))
+        self.setOutput(pin)
+        return self.push('digitalWrite',pin+','+str(value))
 
     def setFreq(self,f):
         """Set the frequency at which the analog pins are writing data."""
@@ -272,6 +268,7 @@ class Photon:
 
     def getTone(self,pin):
         """Returns the frequency of a square wave from a given pin, passed by String argument pin"""
+        self.setInput(pin)
         return self.push('getPulse',pin)
 
 if __name__ == "__main__":

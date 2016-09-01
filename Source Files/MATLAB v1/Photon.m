@@ -86,8 +86,9 @@ classdef Photon < handle
         %to fetch from the spark.io website.  Returns the value of that
         %parameter. Pass each argument as a string!
         function feedback  = push(obj,func,value)
+            options = weboptions('Timeout',20);
             URL = strcat(obj.url,func,'/');
-            a = webwrite(URL,'access_token',obj.token,'args',value);
+            a = webwrite(URL,'access_token',obj.token,'args',value,options);
             feedback = a.return_value;
         end
         
@@ -116,24 +117,13 @@ classdef Photon < handle
         
         %setInput pin
         function feedback = setInput(obj,pin)
-            str = obj.fetch('String2');
-            str = strsplit(str,',');
-            obj.getPin(pin)+1;
-            check = str2num(str{obj.getPin(pin)+1});
-            if check == -1
-                feedback = obj.push('setInput',pin);
-            end
+            feedback = obj.push('setInput',pin);
+
         end
         
         %setOuput pin
         function feedback = setOutput(obj,pin)
-            str = obj.fetch('String2');
-            str = strsplit(str,',');
-            obj.getPin(pin)+1;
-            check = str2num(str{obj.getPin(pin)+1});
-            if check == -1
-                feedback = obj.push('setOutput',pin);
-            end
+            feedback = obj.push('setOutput',pin);
         end
         
         %setInput pin
