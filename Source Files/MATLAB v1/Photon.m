@@ -183,6 +183,7 @@ classdef Photon < handle
         
         %Return the frequency of a pwm pin input  
         function feedback = getTone(obj,pin)
+            obj.setInput(pin);
             feedback = obj.push('getPulse',pin);
         end
         
