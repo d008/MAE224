@@ -2,7 +2,7 @@
 
 Servo myservo;   // Create servo object to control a servo
 int pos = 70;    // Store the position of the servo
-unsigned long pulse = 0;    //length of pulse
+double pulse = -1;    //length of pulse
 int pulsePin = -1;      //pulse pin
 int servoPin = -1;      //servo pin
 int freq =2000;  // Set the frequency of the analogWrite()
@@ -34,6 +34,8 @@ Particle.variable("position",pos);              //Particle variable to get the p
 Particle.variable("frequency",freq);            //Particle variable to get the frequency of the analog write
 Particle.variable("String",strTemp);            //Particle variable to get the memory string
 Particle.variable("String2",strTemp2);          //Particle variable to get the read string
+Particle.variable("String2",strTemp2);          //Particle variable to get the read string
+Particle.variable("pulse",pulse);            //Particle variable to get the frequency of the analog write
 
 }
 
@@ -103,11 +105,6 @@ for(int n = 0;n<=7;n++)
     strTemp.concat(String(memory[17]));
     strTemp2.concat(String(read[17]));
 
-    if(pulsePin>-1)
-    {
-        pulse = pulseIn(A0, HIGH);
-        pulse += pulseIn(A0, LOW);
-    }
 }
 
 int slide(String angle) //spark function slide will take the string it receives (turn) and output it as "angle"
@@ -296,11 +293,13 @@ int setf(String fre)    //Set the frequency of the analog write
     return freq;
 }
 
-unsigned long getPulse(String pin) //get the tone of the analog read
+int getPulse(String pin) //get the tone of the analog read
 {
-    int p = getPin(pin);
-    //double duration = pulseIn(p, HIGH);
-    //duration += pulseIn(p, LOW);
-    return 1.0/(pulse/1000000.0);
+    pulsePin = getPin(pin);
+    setInput(pin);
+    pinMode(pulsePin,INPUT);
+    double duration = pulseIn(pulsePin, HIGH);
+    duration += pulseIn(pulsePin, LOW);
+    return  1.0/(duration/1000000.0);;
 
 }

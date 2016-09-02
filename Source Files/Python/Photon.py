@@ -268,8 +268,8 @@ class Photon:
 
     def getTone(self,pin):
         """Returns the frequency of a square wave from a given pin, passed by String argument pin"""
-        self.push('getPulse',pin)
-        return self.fetch('pulse')
+        return self.push('getPulse',pin)
+#return self.fetch('pulse')
 
 if __name__ == "__main__":
     ac = "abc123"                   #Change this to your access token
