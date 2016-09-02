@@ -30,12 +30,12 @@ if g.getConnection
     end
 end
 %%
-g.setFreq(100)
+g.setFreq(3400)
 g.analogWrite('A5',100)
-g.analogRead('A0')
-g.analogRead('A0')
+g.analogRead('A1')
+g.analogRead('A1')
 
-g.getTone('A0')
+g.getTone('A1')
 %%  Plot that data
 %{
 figure(1)
