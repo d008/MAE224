@@ -17,7 +17,7 @@ into the terminal
 The Matlab code has been designed to utilize the latest version of Matlab (currently 2016a). Matlab does not support HTML PUT requests. Currently, Matlab will call cURL from a unix terminal to upload local code. This functionality will be added in later editions.  
 ***
 #Tutorials & Documentations
-## [Setup  ](https://github.com/mkfu/MAE224/wiki/A-Quick-Setup-of-Particle-Photon)  
+## [Setup a Photon ](https://github.com/mkfu/MAE224/wiki/A-Quick-Setup-of-Particle-Photon)  
 Quickly setup your new Photon on the lab computers
 
 ## [Class Description](https://github.com/mkfu/MAE224/wiki/Class-Description-:-Functions-and-Variables)
