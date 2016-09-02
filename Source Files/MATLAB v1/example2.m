@@ -11,7 +11,6 @@ g.getConnectedDevices()'
 
 
 %% Move a servo
-N = 20;
 
 %Attach a servo to D0
 g.attachServo('D0');
@@ -37,18 +36,4 @@ g.setFreq(3400)
 %Write to A5
 g.analogWrite('A5',100)
 g.analogRead('A1')
-g.analogRead('A1')
-
 g.getTone('A1')
-%%  Plot that data
-%{
-figure(1)
-clf
-plot(time,data,'b-o')
-hold on
-plot(time,data2,'r-s');
-hold off
-xlabel('Time(s)')
-ylabel('Voltage')
-legend('Analog','Digital','location','southeast'
-%}
