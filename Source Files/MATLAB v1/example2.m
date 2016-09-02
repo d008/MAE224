@@ -29,8 +29,12 @@ if g.getConnection
         pause(1)
     end
 end
-%%
+%Detach the servo
+g.detachServo()
+%% Read PWM Frequency
+%Set the write frequency of the analog pins
 g.setFreq(3400)
+%Write to A5
 g.analogWrite('A5',100)
 g.analogRead('A1')
 g.analogRead('A1')
