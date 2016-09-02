@@ -1,6 +1,6 @@
 %% Read Data Example
 %Enter access token below. This can be found in the settings of your Particle Account
-atoken = 'bd6ce2e37c8f82ea597c418a87e8d4fd480d01be'; %YOUR ACCESS TOKEN HERE
+atoken = 'abc123'; %YOUR ACCESS TOKEN HERE
 
 %Enter the core ID
 core =  'class1'; %YOUR PHOTON ID OR NAME HERE
