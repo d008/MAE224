@@ -53,7 +53,7 @@ Quick tutorial on how the Particle Photon communicates with the Python script
 ##[Lab 1 - Hydrostatics](https://github.com/mkfu/MAE224/wiki/Lab-1:--Hydrostatics)
 Special topics in hydrostatics.
 
-##[Lab 2 - Pipe Flow](https://github.com/mkfu/MAE224/wiki/Lab-0:-Python-to-Particle-Communication)
+##[Lab 2 - Pipe Flow](https://github.com/mkfu/MAE224/wiki/Lab-2:-Pipe-Flow)
 Are you in the Moody for some friction factors?
 
 ##[Lab 3 - Boundary Layers](https://github.com/mkfu/MAE224/wiki/Lab-3:-Boundary-Layers)
