@@ -1,14 +1,24 @@
 %% Read Data Example
 %Enter access token below. This can be found in the settings of your Particle Account
-atoken = 'abc123'; %YOUR ACCESS TOKEN HERE
+atoken = 'b11ae5fb681e0d2380e188a1484df454db3f54e0'; %YOUR ACCESS TOKEN HERE
+
+%Enter the core ID
+core =  'torpedo'; %YOUR PHOTON ID OR NAME HERE
+
+%Instantiates a new Photon object
+g = Photon(core,atoken);
+g.getConnectedDevices()'
+%%
+%% Read Data Example
+%Enter access token below. This can be found in the settings of your Particle Account
+atoken = 'bd6ce2e37c8f82ea597c418a87e8d4fd480d01be'; %YOUR ACCESS TOKEN HERE
 
 %Enter the core ID
 core =  'class1'; %YOUR PHOTON ID OR NAME HERE
 
 %Instantiates a new Photon object
-g = Photon(core,atoken);
-g.getConnectedDevices()'
-
+h = Photon(core,atoken);
+h.getConnectedDevices()'
 %% Create Empty arrays
 N = 20;
 data = zeros(1,N);

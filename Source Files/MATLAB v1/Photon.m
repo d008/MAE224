@@ -36,7 +36,7 @@ classdef Photon < handle
             data = webread(URL,'access_token=',obj.token);
             names = {};
             for i = 1:length(data)
-                names{i} = data{i}.name;
+                names{i} = data(i).name;
             end
         end
         
@@ -47,9 +47,9 @@ classdef Photon < handle
             connection={};
             connected = 0;
             for i = 1:length(data)
-                names{i} = data{i}.name;
-                connection{i} = data{i}.connected;
-                if strcmp(names{i},obj.coreID) || strcmp(data{i}.id,obj.coreID)
+                names{i} = data(i).name;
+                connection{i} = data(i).connected;
+                if strcmp(names{i},obj.coreID) || strcmp(data(i).id,obj.coreID)
                     connected = connection{i}(1);
                 end
             end
@@ -58,12 +58,14 @@ classdef Photon < handle
         function names  = getConnectedDevices(obj)
             URL = obj.url2;
             data = webread(URL,'access_token=',obj.token);
+            whos data
+            
             names = {};
             connection={};
             connected = 0;
             for i = 1:length(data)
-                if data{i}.connected(1)
-                names{i} = data{i}.name;
+                if data(i).connected(1)
+                names{i} = data(i).name;
                 end
             end
         end
@@ -181,6 +183,7 @@ classdef Photon < handle
             feedback = obj.push('getPin',pin);
         end
         
+
         %%EXPERIMENTAL
         function pinOuts(obj)
             left = '<--';
