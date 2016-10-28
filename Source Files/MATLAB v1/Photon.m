@@ -47,11 +47,7 @@ classdef Photon < handle
             connection={};
             connected = 0;
             for i = 1:length(data)
-<<<<<<< HEAD
                 names{i} = data(i).name;
-=======
-                names{i} = data{i}.name;
->>>>>>> origin/master
                 connection{i} = data(i).connected;
                 if strcmp(names{i},obj.coreID) || strcmp(data(i).id,obj.coreID)
                     connected = connection{i}(1);
