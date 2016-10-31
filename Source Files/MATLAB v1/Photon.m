@@ -58,8 +58,6 @@ classdef Photon < handle
         function names  = getConnectedDevices(obj)
             URL = obj.url2;
             data = webread(URL,'access_token=',obj.token);
-            whos data
-            
             names = {};
             connection={};
             connected = 0;
