@@ -1,27 +1,21 @@
+Current To-Do List is here: [MAE 224 Lab To-Do List](https://github.com/d008/MAE224/wiki/Lab-To-Do-List)
+
 # Introduction
-MAE 224 is the Integrate Science Lab...
+MAE 224 is the Integrated Science Lab. This Wiki and associated github cover the Fluids portion of the 224 Lab. All lab manuals and documentation can be found here.
 
 ##Prequisites
 
-### Python
-If you want to run the Python code make sure that you have the most up-to-date version of Python 2.7.x.
-Furthermore, if you wish to be able to flash local code to the Particle Photon, you will need to install the requests module.
-This can be done by simply entering
+This lab is designed for those with little to no programming experience. The primary language we will use is Matlab and by the end of this course you should have gained the basic skills of acquiring, processing, and plotting/saving data using Matlab functions.  
 
-```
-pip install requests
-```
-into the terminal
+###[Programming Requirements](https://github.com/d008/MAE224/wiki/Programming-Requirements)
 
-###Matlab
-The Matlab code has been designed to utilize the latest version of Matlab (currently 2016a). Matlab does not support HTML PUT requests. Currently, Matlab will call cURL from a unix terminal to upload local code. This functionality will be added in later editions.  
 ***
-#Tutorials & Documentations
-## [Setup a Photon ](https://github.com/mkfu/MAE224/wiki/A-Quick-Setup-of-Particle-Photon)  
-Quickly setup your new Photon on the lab computers
+#Tutorials & Documentation
+## [Set up a Photon ](https://github.com/d008/MAE224/wiki/Setting-Up-a-Particle-Photon)  
+Quickly perform the setup of your new Photon on the lab computers
 
 ## [Class Description](https://github.com/mkfu/MAE224/wiki/Class-Description-:-Functions-and-Variables)
-Description of the functions and variables in the Photon class and how to access them from Python
+Description of the functions and variables in the Photon class and how to access them from Matlab
 
 ##[Example 1 - Read and Write](https://github.com/mkfu/MAE224/wiki/Example-1-:-Read-and-Write-Pins)
 Quick tutorial on how to use the Photon class to read and write data with analog pins
@@ -47,10 +41,11 @@ detachServo()
 Expectations from technical reports
 ***
 #Labs
-##[Lab 0 - Particle to Python Communications](https://github.com/mkfu/MAE224/wiki/Lab-0:-Python-to-Particle-Communication)
-Quick tutorial on how the Particle Photon communicates with the Python script
 
-##[Lab 1 - Hydrostatics](https://github.com/mkfu/MAE224/wiki/Lab-1:--Hydrostatics)
+##[Lab 1, Part 1 - Lab Equipment Basics](https://github.com/d008/MAE224/wiki/Lab-1,-Part-1:-Lab-Equipment-Basics)
+Get familiar with all the tools you will be using this semester.
+
+##[Lab 1, Part 2 - Hydrostatics](https://github.com/mkfu/MAE224/wiki/Lab-1:--Hydrostatics)
 Special topics in hydrostatics.
 
 ##[Lab 2 - Pipe Flow](https://github.com/mkfu/MAE224/wiki/Lab-2:-Pipe-Flow)
