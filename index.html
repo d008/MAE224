@@ -4,71 +4,73 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>MAE224 by d008</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
-    <div class="wrapper">
+
       <header>
         <h1>MAE224</h1>
         <p>Integrate Science Laboratory</p>
-
-        <p class="view"><a href="https://github.com/d008/MAE224">View the Project on GitHub <small>d008/MAE224</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/d008/MAE224/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/d008/MAE224/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/d008/MAE224">View On <strong>GitHub</strong></a></li>
-        </ul>
       </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/d008/MAE224" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/d008/MAE224/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/d008/MAE224/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
       <section>
-        <h1>
+        <p>Current To-Do List is here: <a href="https://github.com/d008/MAE224/wiki/Lab-To-Do-List">MAE 224 Lab To-Do List</a></p>
+
+<h1>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h1>
 
-<p>MAE 224 is the Integrate Science Lab...</p>
+<p>MAE 224 is the Integrated Science Lab. This Wiki and associated github cover the Fluids portion of the 224 Lab. All lab manuals and documentation can be found here.</p>
 
 <h2>
 <a id="prequisites" class="anchor" href="#prequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prequisites</h2>
 
-<h3>
-<a id="python" class="anchor" href="#python" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Python</h3>
-
-<p>If you want to run the Python code make sure that you have the most up-to-date version of Python 2.7.x.
-Furthermore, if you wish to be able to flash local code to the Particle Photon, you will need to install the requests module.
-This can be done by simply entering</p>
-
-<pre><code>pip install requests
-</code></pre>
-
-<p>into the terminal</p>
+<p>This lab is designed for those with little to no programming experience. The primary language we will use is Matlab and by the end of this course you should have gained the basic skills of acquiring, processing, and plotting/saving data using Matlab functions.  </p>
 
 <h3>
-<a id="matlab" class="anchor" href="#matlab" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Matlab</h3>
-
-<p>The Matlab code has been designed to utilize the latest version of Matlab (currently 2016a). Matlab does not support HTML PUT requests. Currently, Matlab will call cURL from a unix terminal to upload local code. This functionality will be added in later editions.  </p>
+<a id="programming-requirements" class="anchor" href="#programming-requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/d008/MAE224/wiki/Programming-Requirements">Programming Requirements</a>
+</h3>
 
 <hr>
 
 <h1>
-<a id="tutorials--documentations" class="anchor" href="#tutorials--documentations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tutorials &amp; Documentations</h1>
+<a id="tutorials--documentation" class="anchor" href="#tutorials--documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tutorials &amp; Documentation</h1>
 
 <h2>
-<a id="setup-a-photon-" class="anchor" href="#setup-a-photon-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/mkfu/MAE224/wiki/A-Quick-Setup-of-Particle-Photon">Setup a Photon </a>
+<a id="set-up-a-photon-" class="anchor" href="#set-up-a-photon-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/d008/MAE224/wiki/Setting-Up-a-Particle-Photon">Set up a Photon </a>
 </h2>
 
-<p>Quickly setup your new Photon on the lab computers</p>
+<p>Quickly perform the setup of your new Photon on the lab computers</p>
 
 <h2>
 <a id="class-description" class="anchor" href="#class-description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/mkfu/MAE224/wiki/Class-Description-:-Functions-and-Variables">Class Description</a>
 </h2>
 
-<p>Description of the functions and variables in the Photon class and how to access them from Python</p>
+<p>Description of the functions and variables in the Photon class and how to access them from Matlab</p>
 
 <h2>
 <a id="example-1---read-and-write" class="anchor" href="#example-1---read-and-write" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/mkfu/MAE224/wiki/Example-1-:-Read-and-Write-Pins">Example 1 - Read and Write</a>
@@ -106,13 +108,13 @@ detachServo()
 <a id="labs" class="anchor" href="#labs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Labs</h1>
 
 <h2>
-<a id="lab-0---particle-to-python-communications" class="anchor" href="#lab-0---particle-to-python-communications" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/mkfu/MAE224/wiki/Lab-0:-Python-to-Particle-Communication">Lab 0 - Particle to Python Communications</a>
+<a id="lab-1-part-1---lab-equipment-basics" class="anchor" href="#lab-1-part-1---lab-equipment-basics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/d008/MAE224/wiki/Lab-1,-Part-1:-Lab-Equipment-Basics">Lab 1, Part 1 - Lab Equipment Basics</a>
 </h2>
 
-<p>Quick tutorial on how the Particle Photon communicates with the Python script</p>
+<p>Get familiar with all the tools you will be using this semester.</p>
 
 <h2>
-<a id="lab-1---hydrostatics" class="anchor" href="#lab-1---hydrostatics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/mkfu/MAE224/wiki/Lab-1:--Hydrostatics">Lab 1 - Hydrostatics</a>
+<a id="lab-1-part-2---hydrostatics" class="anchor" href="#lab-1-part-2---hydrostatics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/mkfu/MAE224/wiki/Lab-1:--Hydrostatics">Lab 1, Part 2 - Hydrostatics</a>
 </h2>
 
 <p>Special topics in hydrostatics.</p>
@@ -159,11 +161,11 @@ detachServo()
 <p>How big is too big?</p>
       </section>
       <footer>
-        <p>This project is maintained by <a href="https://github.com/d008">d008</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p>Project maintained by <a href="https://github.com/d008">d008</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
