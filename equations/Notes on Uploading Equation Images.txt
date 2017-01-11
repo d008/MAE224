@@ -23,6 +23,9 @@ lab 2 4
 \Delta P = f \frac{\rho U^2}{2} \frac{l}{d}
 lab 2 5
 f = \frac{64}{Re}
-lab 2 6
+lab 3 1
+P_1 + \frac{1}{2} \rho U_1^2 + \rho g z_1 = P_2 + \frac{1}{2} \rho U_2^2 + \rho g z_2
+lab 3 2
+
 
 
