@@ -36,7 +36,7 @@ classdef Photon < handle
             data = webread(URL,'access_token=',obj.token);
             names = {};
             for i = 1:length(data)
-                names{i} = data(i).name;
+                names{i} = data{i}.name;
             end
         end
         
@@ -47,9 +47,9 @@ classdef Photon < handle
             connection={};
             connected = 0;
             for i = 1:length(data)
-                names{i} = data(i).name;
-                connection{i} = data(i).connected;
-                if strcmp(names{i},obj.coreID) || strcmp(data(i).id,obj.coreID)
+                names{i} = data{i}.name;
+                connection{i} = data{i}.connected;
+                if strcmp(names{i},obj.coreID) || strcmp(data{i}.id,obj.coreID)
                     connected = connection{i}(1);
                 end
             end
@@ -62,8 +62,8 @@ classdef Photon < handle
             connection={};
             connected = 0;
             for i = 1:length(data)
-                if data(i).connected(1)
-                names{i} = data(i).name;
+                if data{i}.connected(1)
+                names{i} = data{i}.name;
                 end
             end
         end
@@ -136,7 +136,7 @@ classdef Photon < handle
             end
         end
         
-        %reads the value of an analog pin returning a value of 0-4095
+        %reads the value of an analog pin returning a value of 0-3.33V
         function feedback = analogRead(obj,pin)
             %{
             str = obj.fetch('String');
@@ -145,7 +145,8 @@ classdef Photon < handle
             feedback = str2num(str{obj.getPin(pin)+1});
             %}
             obj.setInput(pin);
-            feedback = obj.push('analogRead',pin);
+            feedback = obj.push('analogRead',pin); %Read in as bit value
+            feedback = feedback .* 3.33 ./ 2^12; %Convert from 12 bit value
         end
         
         %reads the value of a digital pin
@@ -154,10 +155,15 @@ classdef Photon < handle
             feedback = obj.push('digitalRead',pin);
         end
         
-        %writes a 0-255 value to an analog pin
+        %writes an analog voltage value to an analog pin
         function feedback = analogWrite(obj,pin,value)
+            if value<0.0 || value>3.33
+                warning('Analog voltage set outside range (0 to 3.33 V)!')
+            else
+            value = round(value .* 255./3.33); %Convert to 8 bit value
             obj.setOutput(pin);
             feedback = obj.push('analogWrite',strcat(pin,',',int2str(value)));
+            end
         end
         
         %writes a 0 or 1 value to a digital pin
@@ -181,6 +187,35 @@ classdef Photon < handle
             feedback = obj.push('getPin',pin);
         end
         
+        %Read Pressure from Cylinder object
+        function cpress = cylinderP(obj)
+            options = weboptions('Timeout',20);
+            func = 'numbchannel';
+            URL = strcat(obj.url,func,'/');
+            t = webread(URL,'access_token=',obj.token,options);
+            numb = t.result;
+
+            %%% GET DATA %%%
+            func = 'Pressure';
+            URL = strcat(obj.url,func,'/');
+            a = webread(URL,'access_token=',obj.token,options);
+            result = a.result;
+            p = zeros(numb,1);
+            for j = 1:numb %Separate out by Channel
+                ids = (j-1)*4 + 1;
+                ide = j*4;
+                p(j) = str2double(result(ids:ide)) ;
+            end
+           %%% Conversion Factors %%%
+            %MUX A: CH 0-7 are 2.5kPa TOP; 8-11 1kPa TOP
+            %MUX A: CH 12-15 are 1kPa Bottom
+            %MUX B: CH 0-7 are 2.5 kPa Bottom
+                p = (p - 2^12./2) ./ 2^12/2;
+            % Calibrate %
+            cdt = [p(1:8).*2500; p(9:12).*1000];
+            cdb = [p(17:24).*2500; p(13:16).*1000];
+            cpress = [cdt cdb];
+        end
 
         %%EXPERIMENTAL
         function pinOuts(obj)

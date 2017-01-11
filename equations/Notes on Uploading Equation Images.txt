@@ -1,0 +1,14 @@
+Notes on uploading LATEX to PNG equations:
+
+Website: latex2png.com
+
+Resolution Format:
+For in-line equations use a Resolution of 125
+For stand-along (centered) equations use 150
+
+Latex Equation List:
+Tech Report Error 1
+\varepsilon_f = \sqrt{\sum_i \left(\frac{\partial f}{\partial x_i}\right)^2 \varepsilon_i^2}
+Tech Rep. Error 2
+f_k = f_k^0 + \sum_i \frac{\partial f_i}{\partial x_i}
+
