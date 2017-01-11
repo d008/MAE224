@@ -33,5 +33,23 @@ lab 3 4
 \eta = y / \sqrt{(2 \nu x)/U}
 lab 3 5
 u/U = g(\eta)
+lab 4 1
+C_L = \frac{L}{1/2 \rho U^2 c s}
+lab 4 2
+c_l = \frac{l}{1/2 \rho U^2 c}
+lab 4 3
+l = L
+
+
+
+
+
+
+
+
+
+
+
+
 
 
