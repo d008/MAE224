@@ -38,7 +38,24 @@ C_L = \frac{L}{1/2 \rho U^2 c s}
 lab 4 2
 c_l = \frac{l}{1/2 \rho U^2 c}
 lab 4 3
-l = L
+L = l \times s
+lab 4 4
+c_l = 2 \pi \alpha
+lab 5 1
+
+lab 5 2
+C_P = \frac{Power}{1/2 \rho V_0^3 \pi R^2}
+lab 5 3
+C_T = \frac{Axial \ Thrust \ Force}{1/2 \rho V_0^2 \pi R^2}
+lab5 4
+TSR = \frac{\omega R}{V_0}
+lab5 5
+Re_D = \frac{\rho V_0 2 R}{\mu}
+lab5 6
+Re_c = \frac{\rho c \sqrt{V_0^2 +(\omega r)^2}}{\mu}
+lab5 7
+C_{P_{BETZ}} = 0.593
+
 
 
 
