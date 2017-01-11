@@ -26,6 +26,12 @@ f = \frac{64}{Re}
 lab 3 1
 P_1 + \frac{1}{2} \rho U_1^2 + \rho g z_1 = P_2 + \frac{1}{2} \rho U_2^2 + \rho g z_2
 lab 3 2
-
+Re_x \approx 5 \times 10^5
+lab 3 3
+Re_x = U x / \nu
+lab 3 4
+\eta = y / \sqrt{(2 \nu x)/U}
+lab 3 5
+u/U = g(\eta)
 
 
