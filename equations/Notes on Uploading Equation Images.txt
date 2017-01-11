@@ -8,7 +8,21 @@ For stand-along (centered) equations use 150
 
 Latex Equation List:
 Tech Report Error 1
-\varepsilon_f = \sqrt{\sum_i \left(\frac{\partial f}{\partial x_i}\right)^2 \varepsilon_i^2}
+    \varepsilon_f = \sqrt{\sum_i \left(\frac{\partial f}{\partial x_i}\right)^2 \varepsilon_i^2}
 Tech Rep. Error 2
-f_k = f_k^0 + \sum_i \frac{\partial f_i}{\partial x_i}
+    f_k = f_k^0 + \sum_i \frac{\partial f_i}{\partial x_i}
+lab 1 1
+    \frac{d p}{d z} = - \rho g
+Lab 2 1
+\frac{d p}{d x} = \mu \frac{d^2 u}{d y^2}
+lab 2 2
+Re = \frac{\rho U d}{\mu}
+lab 2 3
+Re = \frac{\rho Q d}{\mu A}
+lab 2 4
+\Delta P = f \frac{\rho U^2}{2} \frac{l}{d}
+lab 2 5
+f = \frac{64}{Re}
+lab 2 6
+
 
