@@ -223,12 +223,7 @@ classdef Photon < handle
             func = 'numbchannel';
             URL = strcat(obj.url,func,'/');
             t = webread(URL,'access_token=',obj.token,options);
-            numb = t.result; %Get # channels available
-            
-            func = 'Angle';
-            URL = strcat(obj.url,func,'/');
-            temp = webread(URL,'access_token=',obj.token,options);
-            aoa = temp.result; %Get angle of attack value
+            numb = t.result;
             
             %%% GET Pressure DATA %%%
             func = 'Pressure';
