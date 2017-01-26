@@ -34,6 +34,9 @@ classdef Photon < handle
         function names  = getDevices(obj)
             URL = obj.url2;
             data = webread(URL,'access_token=',obj.token);
+            if isstruct(data)
+                data = {data};
+            end
             names = {};
             for i = 1:length(data)
                 names{i} = data{i}.name;
@@ -43,6 +46,9 @@ classdef Photon < handle
         function connected  = getConnection(obj)
             URL = obj.url2;
             data = webread(URL,'access_token=',obj.token);
+            if isstruct(data)
+                data = {data};
+            end
             names = {};
             connection={};
             connected = 0;
@@ -58,9 +64,13 @@ classdef Photon < handle
         function names  = getConnectedDevices(obj)
             URL = obj.url2;
             data = webread(URL,'access_token=',obj.token);
+            if isstruct(data)
+                data = {data};
+            end
             names = {};
             connection={};
             connected = 0;
+            whos
             for i = 1:length(data)
                 if data{i}.connected(1)
                 names{i} = data{i}.name;

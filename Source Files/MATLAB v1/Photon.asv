@@ -43,6 +43,9 @@ classdef Photon < handle
         function connected  = getConnection(obj)
             URL = obj.url2;
             data = webread(URL,'access_token=',obj.token);
+            if isstruct(data)
+                data = {data};
+            end
             names = {};
             connection={};
             connected = 0;
@@ -58,9 +61,13 @@ classdef Photon < handle
         function names  = getConnectedDevices(obj)
             URL = obj.url2;
             data = webread(URL,'access_token=',obj.token);
+            if isstruct(data)
+                data = {data};
+            end
             names = {};
             connection={};
             connected = 0;
+            whos
             for i = 1:length(data)
                 if data{i}.connected(1)
                 names{i} = data{i}.name;
@@ -223,7 +230,12 @@ classdef Photon < handle
             func = 'numbchannel';
             URL = strcat(obj.url,func,'/');
             t = webread(URL,'access_token=',obj.token,options);
-            numb = t.result;
+            numb = t.result; %Get # channels available
+            
+            func = 'Angle';
+            URL = strcat(obj.url,func,'/');
+            temp = webread(URL,'access_token=',obj.token,options);
+            aoa = temp.result; %Get angle of attack value
             
             %%% GET Pressure DATA %%%
             func = 'Pressure';
