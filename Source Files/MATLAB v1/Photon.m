@@ -27,13 +27,13 @@ classdef Photon < handle
         %parameter. Pass each argument as a string!
         function data  = fetch(obj,param)
             URL = strcat(obj.url,param,'/');
-            data = webread(URL,'access_token=',obj.token);
+            data = webread(URL,'access_token',obj.token);
             data = data.result;
         end
         
         function names  = getDevices(obj)
             URL = obj.url2;
-            data = webread(URL,'access_token=',obj.token);
+            data = webread(URL,'access_token',obj.token);
             if isstruct(data)
                 data = {data};
             end
@@ -45,7 +45,7 @@ classdef Photon < handle
         
         function connected  = getConnection(obj)
             URL = obj.url2;
-            data = webread(URL,'access_token=',obj.token);
+            data = webread(URL,'access_token',obj.token);
             if isstruct(data)
                 data = {data};
             end
@@ -63,14 +63,13 @@ classdef Photon < handle
         
         function names  = getConnectedDevices(obj)
             URL = obj.url2;
-            data = webread(URL,'access_token=',obj.token);
+            data = webread(URL,'access_token',obj.token);
             if isstruct(data)
                 data = {data};
             end
             names = {};
             connection={};
             connected = 0;
-            whos
             for i = 1:length(data)
                 if data{i}.connected(1)
                 names{i} = data{i}.name;
@@ -81,14 +80,14 @@ classdef Photon < handle
         %getVariables returns the potential variables that can be fetched
         function vars  = getVariables(obj)
             URL = strcat(obj.url);
-            a = webread(URL,'access_token=',obj.token);
+            a = webread(URL,'access_token',obj.token);
             vars = a.variables;
         end
         
         %getFunctions returns the potential functions that can be pushed
         function funcs  = getFunctions(obj)
             URL = strcat(obj.url);
-            a = webread(URL,'access_token=',obj.token);
+            a = webread(URL,'access_token',obj.token);
             funcs = a.functions;
         end
         
@@ -122,7 +121,7 @@ classdef Photon < handle
         
         %Detach a servo to a pin given as a string
         function feedback = detachServo(obj)
-            feedback = obj.push('attachServo','');
+            feedback = obj.push('detachServo','');
         end
         
         %setInput pin
@@ -202,13 +201,13 @@ classdef Photon < handle
             options = weboptions('Timeout',20);
             func = 'numbchannel';
             URL = strcat(obj.url,func,'/');
-            t = webread(URL,'access_token=',obj.token,options);
+            t = webread(URL,'access_token',obj.token,options);
             numb = t.result;
 
             %%% GET DATA %%%
             func = 'Pressure';
             URL = strcat(obj.url,func,'/');
-            a = webread(URL,'access_token=',obj.token,options);
+            a = webread(URL,'access_token',obj.token,options);
             result = a.result;
             p = zeros(numb,1);
             for j = 1:numb %Separate out by Channel
@@ -232,18 +231,18 @@ classdef Photon < handle
             options = weboptions('Timeout',20);
             func = 'numbchannel';
             URL = strcat(obj.url,func,'/');
-            t = webread(URL,'access_token=',obj.token,options);
+            t = webread(URL,'access_token',obj.token,options);
             numb = t.result; %Get # channels available
             
             func = 'Angle';
             URL = strcat(obj.url,func,'/');
-            temp = webread(URL,'access_token=',obj.token,options);
+            temp = webread(URL,'access_token',obj.token,options);
             aoa = temp.result; %Get angle of attack value
             
             %%% GET Pressure DATA %%%
             func = 'Pressure';
             URL = strcat(obj.url,func,'/');
-            a = webread(URL,'access_token=',obj.token,options);
+            a = webread(URL,'access_token',obj.token,options);
             result = a.result;
             p = zeros(numb,1);
             for j = 1:numb %Separate out by Channel
