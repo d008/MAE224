@@ -56,7 +56,19 @@ Re_c = \frac{\rho c \sqrt{V_0^2 +(\omega r)^2}}{\mu}
 lab5 7
 C_{P_{BETZ}} = 0.593
 
-
+---Technical Report Manual---
+error 1
+f(x) = f(a) + (x-a) \frac{\partial f}{\partial x} + \frac{1}{2!} (x-a)^2 \frac{\partial^2 f}{\partial x^2} + ...
+error 2 variables
+f(x_i,y_i) = f(\bar{x},\bar{y}) + (x_i - \bar{x}) \frac{\partial f}{\partial x} + (y_i - \bar{y}) \frac{\partial f}{\partial y} + 2(x_i - \bar{x})(y_i - \bar{y})\frac{\partial^2 f}{\partial x \partial y} + ...
+variance of function
+\sigma_{f}^2 = \frac{1}{N-1}\sum_{i=1}^N \left[f(x_i,y_i) - f(\bar{x},\bar{y}) \right]^2
+variance of function with sub
+\sigma_{f}^2 = \frac{1}{N-1}\sum_{i=1}^N \left[ (x_i-\bar{x})^2\left(\frac{\partial f}{\partial x} \right)^2 + (y_i-\bar{y})^2\left(\frac{\partial f}{\partial y} \right)^2  + 2(x_i-\bar{x})(y_i - \bar{y})\left(\frac{\partial f}{\partial x}\frac{\partial f}{ \partial y} \right) + ... \right]
+variance of variables
+\sigma_{x}^2 = \frac{1}{N-1}\sum_{i=1}^N \left[x_i - \bar{x} \right]^2
+std. dev. final
+\sigma_f = \sqrt{\sigma_x^2 \left(\frac{\partial f}{\partial x}\right)^2 + \sigma_y^2 \left(\frac{\partial f}{\partial y}\right)^2 + ...}
 
 
 
