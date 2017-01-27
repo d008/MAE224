@@ -60,7 +60,7 @@ C_{P_{BETZ}} = 0.593
 error 1
     f(x_i) = f(\bar{x}) + (x_i-\bar{x}) \frac{\partial f}{\partial x} + \frac{1}{2!} (x_i-\bar{x})^2 \frac{\partial^2 f}{\partial x^2} + ...
 error 1 variance
-    \sigma_f^2 = \frac{1}{N-1}\sum_{i=1}^N \left[f_{x_i} - f(\bar{x})\right]
+    \sigma_f^2 = \frac{1}{N-1}\sum_{i=1}^N \left[f({x_i}) - f(\bar{x})\right] = \frac{1}{N-1}\sum_{i=1}^N \left[\left((x_i - \bar{x})\frac{\partial f}{\partial x} \right)^2 + ... \right]
 error 1 final
     \sigma_f = \sqrt{\sigma_x^2 \left(\frac{\partial f}{\partial x}\right)^2 + ...}
 error 2 variables
