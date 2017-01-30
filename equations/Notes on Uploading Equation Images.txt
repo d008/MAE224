@@ -66,7 +66,7 @@ error 1 final
 error 2 variables
     h(x_i,y_i) = h(\bar{x},\bar{y}) + (x_i - \bar{x}) \frac{\partial h}{\partial x} + (y_i - \bar{y}) \frac{\partial h}{\partial y} + 2(x_i - \bar{x})(y_i - \bar{y}) \frac{\partial h}{\partial x } \frac{\partial h}{\partial y}} + ...
 variance of function
-    \sigma_{h}^2 = \frac{1}{N-1}\sum_{i=1}^N \left[h(x_i,y_i) - \bar{h}) \right]^2
+    \sigma_{h}^2 = \frac{1}{N-1}\sum_{i=1}^N \left[h(x_i,y_i) - h(\bar{x},\bar{y})) \right]^2
 variance of function with sub
     \sigma_{h}^2 = \frac{1}{N-1}\sum_{i=1}^N \left[ (x_i-\bar{x})^2\left(\frac{\partial h}{\partial x} \right)^2 + (y_i-\bar{y})^2\left(\frac{\partial h}{\partial y} \right)^2  + 2(x_i-\bar{x})(y_i - \bar{y})\left(\frac{\partial h}{\partial x}\frac{\partial h}{ \partial y} \right) + ... \right]
 variance of variables
@@ -74,6 +74,20 @@ variance of variables
 error 2 final
     \sigma_h = \sqrt{\sigma_x^2 \left(\frac{\partial h}{\partial x}\right)^2 + \sigma_y^2 \left(\frac{\partial h}{\partial y}\right)^2 + ...}
 
+---Intro to Airfoils and Qblade Tutorial---
+NOTE THESE ARE CURRENTLY NOT USED!
+lift
+    L = fcn(\mu, \rho, U_{\infty}, \alpha, c)
+lift dim
+    L = [Force] = \left[\frac{M * L}{T^2} \right]
+visc dim
+    \mu = \left[\frac{Force}{Area} * Time \right] = \left[\frac{M}{T * L} \right]
+rho dim
+    \rho = \left[\frac{Mass}{Volume} \right] = \left[\frac{M}{L^3} \right]
+divide by
+    \rho U_\infty^2 c^2
+Cl final
+    \frac{L}{\rho U_\infty^2 c^2}
 
 
 
