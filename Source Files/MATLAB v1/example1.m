@@ -7,7 +7,8 @@ core =  'class1'; %YOUR PHOTON ID OR NAME HERE
 
 %Instantiates a new Photon object
 g = Photon(core,atoken);
-g.getConnectedDevices()'
+g.getConnectedDevices()
+
 %% Create Empty arrays
 N = 20;
 data = zeros(1,N);
@@ -22,9 +23,9 @@ if g.getConnection
     tic
     for i = 1:N
         i
-        g.analogWrite('A4',floor(255/N)*i);
+        g.analogWrite('A4',(3.33/N)*i);
         g.digitalWrite('D7',mod(i,2));
-        data(i)  = g.analogRead('A3')/4095*3.3;
+        data(i)  = g.analogRead('A3');
         data2(i)  = g.digitalRead('D3')*3.3;
         time(i) = toc;
     end
