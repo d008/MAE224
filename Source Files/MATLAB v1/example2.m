@@ -1,39 +1,23 @@
-%% Read Data Example
-%Enter access token below. This can be found in the settings of your Particle Account
-atoken = 'abc123'; %YOUR ACCESS TOKEN HERE
-
-%Enter the core ID
-core =  'class1'; %YOUR PHOTON ID OR NAME HERE
-
-%Instantiates a new Photon object
-g = Photon(core,atoken);
-g.getConnectedDevices()'
+% INPUTS %
+photon = 'your_photon_name'; %Put your specific Photon name here
+atoken = 'abc123';           %Access token
+apin = 'A4';    %Analog pin for PWM output, note that only specific Photon pins are PWM capable
+readpin = 'A5'; %Pin to read in analog frequency
+vout = 3;       %PWM Voltage out
+freq = 3000;    %Frequency for analog PWM
 
 
-%% Move a servo
+%% MAIN PROGRAM %%
+%Create a new photon object%
+g = Photon(photon,atoken);
+%Display the connected devices
+g.getConnectedDevices()
 
-%Attach a servo to D0
-g.attachServo('D0');
+if g.getConnection %Only run code if Photon is connected
+    g.setFreq(freq) %Set the PWM writing frequency
+    g.analogWrite(apin,vout); %Output an analog voltage
 
-%Check if the device is connected
-if g.getConnection
-%Rotate a half roration clockwise
-    for i = 10:10:180
-        g.move(i);
-        pause(1)
-    end
-%Rotate a half roration counter-clockwise    
-    for i = 180:-10:10
-        g.move(i);
-        pause(1)
-    end
+    f1v = g.getTone(readpin); %Read frequency at pin A5
+    disp(['Frequency at pin ' readpin ' is ' num2str(f1v) ' Hz. '])
+
 end
-%Detach the servo
-g.detachServo()
-%% Read PWM Frequency
-%Set the write frequency of the analog pins
-g.setFreq(3400)
-%Write to A5
-g.analogWrite('A5',100)
-g.analogRead('A1')
-g.getTone('A1')
