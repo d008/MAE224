@@ -1,0 +1,8 @@
+title: MAE224
+description: Integrate Science Laboratory
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-leap-day
+
+gems:
+  - jekyll-mentions
