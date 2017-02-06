@@ -1,4 +1,3 @@
-HI MARK
 # Introduction
 MAE 224 is the Integrated Science Lab. This Wiki and associated github cover the Fluids portion of the 224 Lab. All lab manuals and documentation can be found here.
 
