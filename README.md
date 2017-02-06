@@ -1,4 +1,3 @@
-Current To-Do List is here: [MAE 224 Lab To-Do List](https://github.com/d008/MAE224/wiki/Lab-To-Do-List)
 
 # Introduction
 MAE 224 is the Integrated Science Lab. This Wiki and associated github cover the Fluids portion of the 224 Lab. All lab manuals and documentation can be found here.
