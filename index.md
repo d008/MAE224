@@ -37,7 +37,7 @@ Overview of Analog and Digital Signals as well as tutorial on using the Pulse Wi
 Quick tutorial on how use a servo with the Photon class and read a PWM signal 
 
 ***  
-
+ 
 # Labs 
 
 ## [Lab 1, Part 1 - Lab Equipment Basics](https://github.com/d008/MAE224/wiki/Lab-1,-Part-1:-Lab-Equipment-Basics)
@@ -57,9 +57,9 @@ What goes up will stay up, if it has enough lift.
     [Introduction to Airfoils and Qblade](https://github.com/d008/MAE224/wiki/Introduction-to-Airfoils-and-Qblade)
 
 *** 
- 
+  
 # Wind Turbine Project
-
+ 
 ## [Simulating Wind Turbine Rotors with QBlade](https://github.com/mkfu/MAE224/wiki/Simulating-Wind-Turbine-Rotors-using-Qblade)
 Can it be done?
 
