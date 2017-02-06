@@ -12,7 +12,7 @@ This lab is designed for those with little to no programming experience. The pri
 ***
  
 # Tutorials & Documentation 
-
+ 
 ## [Set up a Photon ](https://github.com/d008/MAE224/wiki/Setting-Up-a-Particle-Photon)  
 Quickly perform the setup of your new Photon on the lab computers
 
@@ -36,8 +36,9 @@ Overview of Analog and Digital Signals as well as tutorial on using the Pulse Wi
 ## [Example 3 - Servos](https://github.com/mkfu/MAE224/wiki/Example-3-:-Servos)
 Quick tutorial on how use a servo with the Photon class and read a PWM signal 
 
-*** 
-#Labs 
+***  
+
+# Labs 
 
 ## [Lab 1, Part 1 - Lab Equipment Basics](https://github.com/d008/MAE224/wiki/Lab-1,-Part-1:-Lab-Equipment-Basics)
 Get familiar with all the tools you will be using this semester.
@@ -56,6 +57,7 @@ What goes up will stay up, if it has enough lift.
     [Introduction to Airfoils and Qblade](https://github.com/d008/MAE224/wiki/Introduction-to-Airfoils-and-Qblade)
 
 *** 
+ 
 # Wind Turbine Project
 
 ## [Simulating Wind Turbine Rotors with QBlade](https://github.com/mkfu/MAE224/wiki/Simulating-Wind-Turbine-Rotors-using-Qblade)
