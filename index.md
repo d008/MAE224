@@ -8,10 +8,11 @@ _If you are just starting the lab course, begin with Lab 1, Part 1 (below and [h
 This lab is designed for those with little to no programming experience. The primary language we will use is Matlab and by the end of this course you should have gained the basic skills of acquiring, processing, and plotting/saving data using Matlab functions.  
 
 ### [Programming Requirements](https://github.com/d008/MAE224/wiki/Programming-Requirements)
-
+ 
 ***
-
+ 
 # Tutorials & Documentation 
+
 ## [Set up a Photon ](https://github.com/d008/MAE224/wiki/Setting-Up-a-Particle-Photon)  
 Quickly perform the setup of your new Photon on the lab computers
 
@@ -20,11 +21,12 @@ Quick reference diagram of the pin locations on the Particle Photon
 
 ## [Class Description](https://github.com/mkfu/MAE224/wiki/Class-Description-:-Functions-and-Variables)
 Description of the functions and variables in the Photon class and how to access them from Matlab
-
+ 
 ## [Technical Report Guidelines](https://github.com/mkfu/MAE224/wiki/Technical-Report-Guidelines)
 Expectations from technical reports
 
-# Examples 
+# Examples  
+
 ## [Example 1 - Read and Write](https://github.com/mkfu/MAE224/wiki/Example-1-:-Read-and-Write-Pins)
 Quick tutorial on how to use the Photon class to read and write data with analog pins
 
