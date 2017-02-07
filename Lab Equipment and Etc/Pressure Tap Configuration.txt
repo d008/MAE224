@@ -1,0 +1,44 @@
+Airfoil Pressure Tap Configuration
+----------------------------------
+Tap 0 is directly on the leading edge
+    Tap Number increases along the top (suction) side
+    wraps around trailing edge and towards leading edge
+    for total of 30 taps (30 connected).
+Taps 1-5 are 001PDAA5 (+/- 1PSID)
+Taps 6-32 are 010MDAA3 (+/- 1000 Pascals)
+
+Cylinder Pressure Tap Configuration
+-----------------------------------
+Prepare yourself because this one is insane:
+Tap 0 is a 2.5kPa transducer
+Taps 1-7 (top side of cylinder, when Photon is facing up) are 2.5kPa
+Taps 8-10 are 1 kPa, tap 11 is not connected
+Numbering wraps around cylinder to the bottom
+Tap 12 is also not connected
+Taps 13-15 are 1kPa and 16-22 are 2.5kPa (mirror image of top).
+What gets really confusing is the mapping of the taps to the outputs 
+Tap Output  Range
+--- ------  -----
+0   4       2.5kPa
+1   3       2.5kPa
+2   2       2.5kPa
+3   1       2.5kPa
+4   8       2.5kPa
+5   7       2.5kPa
+6   6       2.5kPa
+7   5       2.5kPa
+8   12      1kPa
+9   11      1kPa
+10  10      1kPa
+11  N/C
+12  N/C
+13  15      1kPa
+14  14      1kPa
+15  13      1kPa
+16  20      2.5kPa
+17  19      2.5kPa
+18  18      2.5kPa
+19  17      2.5kPa
+20  24      2.5kPa
+21  23      2.5kPa
+22  22      2.5kPa

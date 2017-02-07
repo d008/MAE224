@@ -219,23 +219,28 @@ classdef Photon < handle
         end
         
         %Read Pressure from Cylinder object
-        function [pt, pb] = mrcylinder(obj)
+        function [pf, pb] = mrcylinder(obj)
             options = weboptions('Timeout',20);
             %%% GET DATA %%%
             func = 'Pressure';
             URL = strcat(obj.url,func,'/');
             a = webread(URL,'access_token',obj.token,options);
             pn = str2double(strsplit(a.result,',')); 
-            pn = pn ./ 2^11; %Convert to fractions of range
+%             pn = pn ./ 2^11; %Convert to fractions of range
            %%% Conversion Factors %%%
             %First 8 taps top and bottom from 0 are 2.5kPa
-            %Last 3 taps are 1kPa, see notes on github for tap layout
-            %Tap numbering wraps around cylinder
-            %Rear-most transducers top and bottom not connected!!
-            pt = pn([4,3,2,1,8,7,6,5,12,11,10])'; %Map to location
-            pb = pn([15,14,13,20,19,18,17,24,23,22])';
-            pt = [pt(1:8).*2500; pt(9:11).*1000];% Calibrate %
-            pb = [pb(1:3).*1000; pb(4:end).*2500];
+            %Last 3 taps are 1kPa
+            %MUX A: CH 0-7 are 2.5kPa TOP (8); 8-11 1kPa TOP (4)
+            %MUX A: CH 12-15 are 1kPa Bottom (4)
+            %MUX B: CH 0-7 are 2.5 kPa Bottom (8)
+            %Last transducers top and bottom not connected!!
+            % Calibrate %
+%             pt = [pt(1:8).*2500; pt(9:11).*1000];
+%             pb = [pb(1:8).*2500; pb(9:11).*1000];
+            pt = pn([4,3,2,1,8,7,6]);
+            pb = [pn(17:24), pn(12:16)];
+            pt = pn;
+            pb = pn;
 
         end
         
