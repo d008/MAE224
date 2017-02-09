@@ -52,6 +52,7 @@ classdef Photon < handle
         function connected  = getConnection(obj)
             URL = obj.url2;
             data = webread(URL,'access_token',obj.token);
+            whos
               if iscell(data)%We are dealing with a Spark Core/Photon Combo
                     for j = 1:length(data)
                         %Spark and Photon return different size structs
@@ -69,7 +70,7 @@ classdef Photon < handle
             for i = 1:length(data)
                 names{i} = data(i).name;
                 connection{i} = data(i).connected;
-                if strcmp(names{i},obj.coreID) || strcmp(data{i}.id,obj.coreID)
+                if strcmp(names{i},obj.coreID) || strcmp(data(i).id,obj.coreID)
                     connected = connection{i}(1);
                 end
             end
