@@ -257,10 +257,10 @@ classdef Photon < handle
            %%% Conversion Factors %%%
             %MUX TOP: CH 0-5 are 1PSI, rest 1 kPa
             %MUX Bottom: CH 0-15 are all 1kPa
-            %%% Only 1-29 and 32 are connected to ptaps %%%
+            %%% Only 1-29 and 31 are connected to ptaps %%%
             p = [pn(1:6).*6894.757 pn(7:end).*1000]; %Convert to Pascals
             pt = p(1:16)';
-            pb = p([17:29,32])';
+            pb = p([17:29,31])';
         end
         
         
