@@ -1,11 +1,11 @@
 Airfoil Pressure Tap Configuration
 ----------------------------------
-Tap 0 is directly on the leading edge
+Tap 1 is directly on the leading edge
     Tap Number increases along the top (suction) side
     wraps around trailing edge and towards leading edge
     for total of 30 taps (30 connected).
 Taps 1-5 are 001PDAA5 (+/- 1PSID)
-Taps 6-32 are 010MDAA3 (+/- 1000 Pascals)
+Taps 6-30 are 010MDAA3 (+/- 1000 Pascals)
 
 Cylinder Pressure Tap Configuration
 -----------------------------------
