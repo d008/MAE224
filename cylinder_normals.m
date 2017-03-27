@@ -1,4 +1,4 @@
-function [ xn, yn, u, v ] = cylinder_normals( ~ )
+function [ xn, yn, u, v ] = cylinder_normals()
 %Code for outputting the Cylinder Surface Normals
 %   aoa = current angle of attack (degrees)
 % OUTPUTS: xn,yn pointer vectors from leading edge of cylinder
