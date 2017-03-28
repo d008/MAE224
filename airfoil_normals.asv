@@ -16,8 +16,8 @@ naca = @(x,t,c) 5.*t./100.*c.*( 0.2969.*sqrt(x./c) ...
 X = linspace(0,1,16);
 X = X'.*c; Y = naca(X,18,c);
 
-xpts = [ X; flipud(X(2:end))];% - 0.25.*c;
-ypts = [ Y; -1.*flipud(Y(2:end))];
+xpts = [ X; flipud(X(2:end))]% - 0.25.*c;
+ypts = [ Y; -1.*flipud(Y(2:end-1))]
 
 %Angela Merkel--%
 %Rotate Airfoil to given AoA about 1/4 chord%
@@ -36,8 +36,6 @@ yL = circshift(yn,[1,0]); yR = circshift(yn,[-1,0]); %elements that P acts on
     u = dy ./ m ;
     v = dx ./ m ;
 %Get rid of taps not connected%    
-    ind = find(1:1:numel(u) ~= 17);
-    xn = xn(ind); yn = yn(ind); u = u(ind); v = v(ind);
 %Plot surface Normals%
 figure(1)
 quiver(xn,yn,u,v,'r');
