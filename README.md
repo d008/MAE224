@@ -21,7 +21,7 @@ Quick reference diagram of the pin locations on the Particle Photon
 ## [Class Description](https://github.com/mkfu/MAE224/wiki/Class-Description-:-Functions-and-Variables)
 Description of the functions and variables in the Photon class and how to access them from Matlab
 
-##[Technical Report Guidelines](https://github.com/mkfu/MAE224/wiki/Technical-Report-Guidelines)
+## [Technical Report Guidelines](https://github.com/mkfu/MAE224/wiki/Technical-Report-Guidelines)
 Expectations from technical reports
 
 # Examples
