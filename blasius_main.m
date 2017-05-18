@@ -24,14 +24,15 @@ end
 
 
 %% Physical Parameters
-Uinf = 2.0;
-nu =  1e-6;
-x = 1350e-3;
+clc
+Uinf = 17.0;
+nu =  1.8e-5/1.2;
+x = 595e-3;
 
-re = Uinf * x /nu;
+re = Uinf * x /nu
 y = etas/sqrt(Uinf/(2*nu*x));
 u = Uinf*f3(:,2);
-deltaL = 4.9*x/sqrt(re)
+deltaL = 4.9*x/sqrt(re);
 d99 = y(min(find(u>0.99*Uinf)))
 deltaT = 0.38*x/re.^(0.2)
 plot(u,y,'b')
