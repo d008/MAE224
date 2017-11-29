@@ -1,6 +1,6 @@
 HI CLASS
 # Introduction
-MAE 224 is the Integrated Science Lab. This Wiki and associated github cover the Fluids portion of the 224 Lab. All lab manuals and documentation can be found here.
+MAE 224 is the Integrated Engineering Science Laboratory. This Wiki and associated github cover the Fluids portion of the 224 Lab. All lab manuals and documentation can be found here.
 
 _If you are just starting the lab course, begin with Lab 1, Part 1 (below and [here](https://github.com/d008/MAE224/wiki/Lab-1,-Part-1:-Lab-Equipment-Basics))._
 
