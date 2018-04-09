@@ -1,101 +1,30 @@
 // This code reads in multiplexed pressure sensors for the MAE 224 LAB
-// Cylinder experiment and outputs them to the cloud in arrays
-#include "application.h"
+// Airfoil experiment and outputs them to the cloud in arrays
+//#include "application.h"
 
-//Mux A control pins
-int acontrol[] = {D0, D1, D2, D3};
-int asig = A0; //Mux A "SIG" pin
-    //MUX A: CH 0-7 are 2.5kPa TOP; 8-11 1kPa TOP
-    //MUX A: CH 12-15 are 1kPa Bottom
-    //MUX B: CH 0-7 are 2.5 kPa Bottom
-    //Last transducers on top and bottom not connected
+
+//Mux control top pins
+int t0 = D0;
+int t1 = D1;
+int t2 = D2;
+int t3 = D3;
+//Mux control bottom pins
+int b0 = D4;
+int b1 = D5;
+int b2 = D6;
+int b3 = D7;
+
+
+//Mux Top control pins
+int topControl[] = {t0, t1, t2, t3};
+
+int tsig = A0; //Mux A "SIG" pin
 // Read these pins on MUX A
-int apins[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
-//MUX B Control Pins
-int bcontrol[] = {D4, D5, D6, D7};
+//MUX Bottom Control Pins
+int bottomControl[] = {b0, b1, b2, b3};
 int bsig = A1; //MUX B "SIG" pin
 // Read these pins on MUX B
-int bpins[] = {0, 1, 2, 3, 4, 5, 6, 7};
-
-// Find total number of pins to read
-int sza = sizeof(apins) / sizeof(int);
-int szb = sizeof(bpins) / sizeof(int);
-int szt = sza + szb;
-
-int t = 200; //Milliseconds to average over
-int vals[32];//Storage for channel reads
-
-char allPressures[621]; //String storage for Particle Cloud variables
-char temp[621];
-char finalPressures[621];
-
-void setup(){
-    
-  Serial.begin(9600);
-  Particle.variable("Pressure",finalPressures,STRING);
-  Particle.variable("numbchannel",szt);
-
-//Set up MUX A
-  for(int i = 0; i<4; i++)
-    {    
-      pinMode(acontrol[i], OUTPUT);
-      digitalWrite(acontrol[i], LOW);
-    }
-//Set up MUX B
-  for(int i = 0; i<4; i++)
-    {
-      pinMode(bcontrol[i], OUTPUT);
-      digitalWrite(bcontrol[i], LOW);
-    }
-  
-}
-
-
-void loop(){
-    
-  sprintf(allPressures,"");
-  sprintf(temp,""); 
-
-  //Loop through and read all MUX A channels
-  for(int i=0; i<(sza); i++)
-    {
-        
-        Serial.print("Value for MUX A at channel ");
-        Serial.print(apins[i]);
-        Serial.print(" is: ");
-        vals[i] = (double)readMux(apins[i], asig, acontrol);
-        Serial.println( vals[i] );
-        delay(500);
-        Serial.flush();
-
-     
-    }
-    
-  //Loop through and read all MUX B channels
-  for(int i = 0; i < (szb); i++){
-      Serial.print("Value for MUX B at channel ");
-      Serial.print( bpins[i] );
-      Serial.print(" is : ");
-      vals[i+sza] = (double)readMux(bpins[i], bsig, bcontrol);
-      Serial.println( vals[i+sza] );
-      delay(500);
-      Serial.flush();
-
-  }
-  
-  //Write values to string      
-  for(int i = 0; i < szt; i++){
-      sprintf(temp,"%s",allPressures);
-      sprintf(allPressures,"%s%d",temp,vals[i]);
-    }
-  
-  sprintf(finalPressures,"%s",allPressures);
-}
-
-
-int readMux(int channel, int SIG_pin, int controlPin[]){
-
   int muxChannel[16][4]={
     {0,0,0,0}, //channel 0
     {1,0,0,0}, //channel 1
@@ -114,20 +43,101 @@ int readMux(int channel, int SIG_pin, int controlPin[]){
     {0,1,1,1}, //channel 14
     {1,1,1,1}  //channel 15
     };
+//Zeros, saved here so we can update them if needed outside the photon.m file    
+int ptz[16] = {2055,2045,2045,2053,2061,2050,2052,2051,2046,2050,2056,2056,2057,2049,2042,2046};  
+int pbz[16] = {2051,2054,2054,2055,0,2055,2053,2051,0,0,0,0,0,0,0,0};
+//int ptz[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};  
+//int pbz[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-  //loop through the 4 pins
-  for(int i = 0; i < 4; i ++){
-    digitalWrite(controlPin[i], muxChannel[channel][i]);
+
+
+int avg = 200; //Milliseconds to average over
+int vals[32];//Storage for channel reads
+
+char allPressures[621]; //String storage for Particle Cloud variables
+char temp[621];
+char finalPressures[621];
+int dum = 0;
+
+void setup(){
+    
+  Serial.begin(9600);
+  Particle.variable("Pressure",finalPressures);
+  pinMode(tsig,INPUT);
+  pinMode(bsig,INPUT);
+//Set up MUX A
+  for(int i = 0; i<4; i++)
+    {    
+      pinMode(topControl[i], OUTPUT);
+      digitalWrite(topControl[i], LOW);
+    }
+//Set up MUX B
+  for(int i = 0; i<4; i++)
+    {
+      pinMode(bottomControl[i], OUTPUT);
+      digitalWrite(bottomControl[i], LOW);
+    }
+
+}
+
+
+void loop(){
+    for(int i = 0; i < 32; i ++){
+      vals[i]=0;
+    }
+  dum = 0;    
+  sprintf(allPressures,"");
+  sprintf(temp,""); 
+
+  //Loop through and read all Muxer channels
+  for(int t = 0; t< avg;t++){
+  for(int i = 0; i < 16; i++){
+    vals[i] += (double)readMux(1,i);
+    vals[i+16] += (double)readMux(0,i);
+     }
+    }
+    sprintf(allPressures,"");
+    sprintf(temp,"");
+    for(int i = 0; i < 31; i ++){
+    sprintf(temp,"%s",allPressures);
+    if(i<16){
+       dum = round( vals[i]/avg) - ptz[i];
+    }
+    else{
+       dum = round(vals[i]/avg) - pbz[i-16];
+    }
+    sprintf(allPressures,"%s%d,",temp,dum);
   }
+    sprintf(temp,"%s",allPressures);
+    dum = round(vals[31]/avg) - pbz[15];
+    sprintf(finalPressures,"%s%d",temp,dum);
+      
+  //sprintf(finalPressures,"%s",allPressures);
+  //Serial.print(finalPressures);
+  
 
-  //read the value at the SIG pin and average over t samples
-  int val = 0;
-  for(int i=0; i<t; i++)
-        {
-            val += analogRead(SIG_pin);
-            delay(1); //Wait 1ms between samples
-        }    
-    int fval = int(val/t);    
+
+}
+
+int readMux(bool isTop, int channel){
+  //loop through the 4 sig
+  for(int i = 0; i < 4; i ++){
+    digitalWrite(topControl[i], muxChannel[channel][i]);
+    digitalWrite(bottomControl[i], muxChannel[channel][i]);
+
+  }
+   // Serial.println(channel);
+  //read the value at the SIG pin
+  int val;
+  if(isTop)
+  {
+  val = analogRead(tsig);
+  }
+  else
+  {
+  val = analogRead(bsig);
+  }
   //return the value
-  return fval;
+  Serial.println(val);
+  return val;
 }
