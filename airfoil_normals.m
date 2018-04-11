@@ -26,8 +26,8 @@ xn = xpts.*cos(aoa) + ypts.*sin(aoa);
 yn = ypts.*cos(aoa) - xpts.*sin(aoa);
 
 %Find x and y surface normals%
-xL = circshift(xn,[1,0]); xR = circshift(xn,[-1,0]); %Generate x and y area
-yL = circshift(yn,[1,0]); yR = circshift(yn,[-1,0]); %elements that P acts on
+xL = circshift(xn,[0,1]); xR = circshift(xn,[0,-1]); %Generate x and y area
+yL = circshift(yn,[0,1]); yR = circshift(yn,[0,-1]); %elements that P acts on
     m = sqrt((xL-xR).^2 + (yL-yR).^2);
     dx = (xR - xL);
     dy = (yL - yR);
