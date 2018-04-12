@@ -38,8 +38,8 @@ plot(xn,yn,'bo')
     
 
 %% Find x and y surface normals%
-xL = circshift(xn,[1,0]); xR = circshift(xn,[-1,0]); %Generate x and y area
-yL = circshift(yn,[1,0]); yR = circshift(yn,[-1,0]); %elements that P acts on
+xL = circshift(xn,[0,1]); xR = circshift(xn,[0,-1]); %Generate x and y area
+yL = circshift(yn,[0,1]); yR = circshift(yn,[0,-1]); %elements that P acts on
     dx = (xR - xL);
     dy = (yL - yR);
 % modify the 2 taps closest to trailing edge 
