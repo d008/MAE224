@@ -10,7 +10,7 @@ int reading[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // Store the memory of 
 
 int memory[18] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // Store the memory of the read data or the written
 int t = 200; //Set milliseconds of averaging
-int read[18] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; //Stores whether the pin is reading (1), writing (0), or uninitialized(-1) or Servo (2)
+int readVar[18] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}; //Stores whether the pin is reading (1), writing (0), or uninitialized(-1) or Servo (2)
 String strTemp =""; //memory as string
 String strTemp2 =""; // read as string
 void setup()
@@ -48,13 +48,13 @@ for(int m =0;m<t;m++)
     for(int n = 10;n<=17;n++)
     {
         // If the pin is a writing pin
-        if(read[n] == 0)
+        if(readVar[n] == 0)
         {
             //Write the value
             analogWrite(n,memory[n],freq);
         }
         // If the pin is a reading pin
-        else if (read[n] == 1)
+        else if (readVar[n] == 1)
         {
             //Iterate t times with a 1 ms delay to average out the analog reads
                 reading[n] += analogRead(n);
@@ -65,7 +65,7 @@ for(int m =0;m<t;m++)
 }
  for(int n = 10;n<=17;n++)
     {
-       if (read[n] == 1)
+       if (readVar[n] == 1)
         {
         memory[n] = int(reading[n]/t);
         reading[n] = 0;
@@ -76,13 +76,13 @@ for(int m =0;m<t;m++)
 for(int n = 0;n<=7;n++)
 {
 //If a writing pin
-    if(read[n] == 0)
+    if(readVar[n] == 0)
     {
         //Write the value to the pin
         digitalWrite(n,memory[n]);
     }
     //If a reading pin
-   else if (read[n] == 1)
+   else if (readVar[n] == 1)
     {
         //Read the value of the pin
         memory[n]=digitalRead(n);
@@ -99,11 +99,11 @@ for(int n = 0;n<=7;n++)
     {
         strTemp.concat(String(memory[n]));
         strTemp.concat(',');
-        strTemp2.concat(String(read[n]));
+        strTemp2.concat(String(readVar[n]));
         strTemp2.concat(',');
     }
     strTemp.concat(String(memory[17]));
-    strTemp2.concat(String(read[17]));
+    strTemp2.concat(String(readVar[17]));
 
 }
 
@@ -173,12 +173,12 @@ int getPin(String pin) //Translate the string of the pin to an integer
 int attachServo(String pin) //Attach a servo to a pin
 {
     int p = getPin(pin); //convert pin to an integer
-    if(p>-1 && read[p]==-1)
+    if(p>-1 && readVar[p]==-1)
     {
         myservo.attach(p);
         servoPin = p;
         delay(10);
-        read[p] = 2;
+        readVar[p] = 2;
         return p;
     }
         return -1;
@@ -187,7 +187,7 @@ int attachServo(String pin) //Attach a servo to a pin
 int detachServo(String pin) //Detach a servo to a pin
 {
         myservo.detach(); //convert pin to an integer
-        read[servoPin] = -1;
+        readVar[servoPin] = -1;
         servoPin = -1;
         delay(10);
         return 1;
@@ -196,10 +196,10 @@ int detachServo(String pin) //Detach a servo to a pin
 int setInput(String pin)    //Set the pin to an input pin
 {
     int p = getPin(pin);
-    if(p>-1 && read[p]==-1)
+    if(p>-1 && readVar[p]==-1)
     {
         pinMode(p, INPUT);
-        read[p] = 1;
+        readVar[p] = 1;
         return 1;
     }
         return -1;
@@ -208,10 +208,10 @@ int setInput(String pin)    //Set the pin to an input pin
 int setOutput(String pin)   //Set the pin to an output pin
 {
     int p = getPin(pin);
-    if(p>-1 && read[p]==-1)
+    if(p>-1 && readVar[p]==-1)
     {
         pinMode(p, OUTPUT);
-        read[p] = 0;
+        readVar[p] = 0;
         return 1;
     }
         return -1;
@@ -237,7 +237,7 @@ int awrite(String pin)  //Takes an input argument with syntax "pin,value" ex. "A
     int val = p1.toInt();
     //pinMode(p,OUTPUT);
 
-    read[p] = 0;
+    readVar[p] = 0;
 
     memory[p] = val;
     return val;
