@@ -4,7 +4,7 @@ function [ dy ] = blasius_diffeq( f )
 %   Detailed explanation goes here
 
 dy = zeros(1,3);
-dy(1) = -(f(1)*f(3));
+dy(1) = -0.5*(f(1)*f(3));
 dy(2) = f(1);
 dy(3) = f(2);
 
