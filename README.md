@@ -49,7 +49,7 @@ Are you in the Moody for some friction factors?
 ## [Lab 3 - Boundary Layers](https://github.com/mkfu/MAE224/wiki/Lab-3:-Boundary-Layers)
 The wall is the law in this town.
 
-## [Lab 4 - Lift and Drag](https://github.com/mkfu/MAE224/wiki/Lab-4:-Lift-and-Drag)
+## [Lab 4 - Lift and Drag](https://github.com/d008/MAE224/wiki/Lab-4:-Lift-and-Drag---Spring-2020)
 What goes up will stay up, if it has enough lift.
     [Introduction to Airfoils and Qblade](https://github.com/d008/MAE224/wiki/Introduction-to-Airfoils-and-Qblade)
 
